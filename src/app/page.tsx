@@ -2,6 +2,7 @@
 
 import Todo from "@features/Todo/Todo";
 import useTodos from "@features/Todo/todoHook";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
@@ -20,6 +21,20 @@ export default function Home() {
     const allDoneMessage = (
       <div className="text-lg text-center my-4">All done for today! 🎉</div>
     );
+
+    if (todos.length === 0) {
+      // Load a gif from public folder
+      return (
+        <div className="mx-auto my-auto">
+          <Image
+            src="/200w.gif"
+            alt="loading"
+            width={480}
+            height={480}
+          />
+        </div>
+      );
+    }
     const completedTodos = todos.filter((todo) => todo.completed);
 
     if (completedTodos.length === 0) {
