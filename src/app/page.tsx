@@ -27,7 +27,7 @@ export default function Home() {
       return (
         <div className="mx-auto my-auto">
           <Image
-            src="/200w.gif"
+            src="/no-todos.gif"
             alt="loading"
             width={480}
             height={480}
