@@ -1,12 +1,20 @@
+'use client'; // This is a client component 👈
+
+import { ThemeContext, ThemeContextType } from '@context/ThemeContext/ThemeContext';
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
+import { useContext } from 'react';
+
 export default function Header() {
+  const { theme, changeTheme } = useContext<ThemeContextType>(ThemeContext);
+
   return (
     <>
-      <h1 className="text-3xl mt-4">What Todo 📋</h1>
-
-      <p className="text-sm self-start border border-b border-gray-200 rounded-xl p-4 mt-4 lg bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit dark:bg-zinc-800/30">
-        Get started by adding a&nbsp;
-        <code className="font-mono font-bold">Todo</code>
-      </p>
+      <div className="flex items-center justify-between mt-4">
+        <h1 className="text-3xl">📋 What Todo</h1>
+        <button className="btn btn-ghost" onClick={() => changeTheme(theme === 'light' ? 'dark' : 'light')}>
+          {theme === 'light' ? <MoonIcon className="h-6 w-6" /> : <SunIcon className="h-6 w-6" />}
+        </button>
+      </div>
     </>
   );
 }
