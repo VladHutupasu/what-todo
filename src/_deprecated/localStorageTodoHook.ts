@@ -1,5 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ITodo, ITodoItem } from './Todo.interface';
+interface ITodo {
+  _id: number;
+  name: string;
+  description: string;
+  items: ITodoItem[];
+}
+
+interface ITodoItem {
+  _id: number;
+  text: string;
+  completed: boolean;
+}
 
 //TODO: Expose less methods
 export default function useLocalStorageTodos() {

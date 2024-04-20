@@ -13,7 +13,7 @@ export default function AddTodo({
 
   const handleAddTodo = () => {
     if (!inputValue) return;
-    addTodoItem({ _id: Date.now(), text: inputValue, completed: false }, todoListId);
+    addTodoItem({ text: inputValue, completed: false }, todoListId);
     setInputValue('');
   };
 

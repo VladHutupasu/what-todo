@@ -1,19 +1,19 @@
 import { ITodo } from '@features/Todo/Todo.interface';
 import { db } from '.';
 
-export async function getTodos() {
+export async function getTodos(): Promise<ITodo[]> {
   const todos = await db.todoList.findMany({
     include: {
       items: true,
     },
   });
-  return todos;
+  return todos as unknown as ITodo[];
 }
 
 export async function createTodo(todo: ITodo) {
   return await db.todoList.create({
     data: {
-      title: todo.name,
+      title: todo.title,
       description: todo.description,
       items: {
         create: {

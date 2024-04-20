@@ -20,10 +20,7 @@ export default function useDatabaseTodos() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name: todoList.name,
-        description: todoList.description,
-      }),
+      body: JSON.stringify(todoList),
     }).then(() => setRefresh(oldKey => oldKey + 1));
   };
 
@@ -32,5 +29,5 @@ export default function useDatabaseTodos() {
     fetchTodos();
   }, [refresh]);
 
-  return { todosDBHook: todos, addTodoListDB: addTodoList };
+  return { todos, addTodoList };
 }

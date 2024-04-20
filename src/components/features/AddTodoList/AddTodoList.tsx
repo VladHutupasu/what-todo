@@ -1,23 +1,31 @@
-import { ITodo } from '@features/Todo/Todo.interface';
+'use client'; // This is a client component 👈
+
 import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 
-export default function AddTodoList({ addTodoList }: { addTodoList: (todoList: ITodo) => void }) {
+export default function AddTodoList() {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
 
   const addNewTodoList = async () => {
-    console.log('New Todo List');
-    addTodoList({
-      _id: Date.now(),
-      name: name,
-      description: description,
-      items: [],
+    const response = await fetch('/api/createTodo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title: name, description, items: [] }),
     });
 
+    if (!response.ok) {
+      console.error('Failed to create todo', response);
+      return;
+    }
+
+    const todo = await response.json();
+    console.log('Created', todo);
     dialogRef.current?.removeAttribute('open');
   };
 
