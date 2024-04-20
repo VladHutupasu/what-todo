@@ -1,12 +1,15 @@
 import { ITodo } from '@features/Todo/Todo.interface';
 import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useRef, useState } from 'react';
 
 export default function AddTodoList({ addTodoList }: { addTodoList: (todoList: ITodo) => void }) {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const router = useRouter();
 
-  const addNewTodoList = () => {
+  const addNewTodoList = async () => {
     console.log('New Todo List');
     addTodoList({
       _id: Date.now(),
@@ -14,6 +17,8 @@ export default function AddTodoList({ addTodoList }: { addTodoList: (todoList: I
       description: description,
       items: [],
     });
+
+    dialogRef.current?.removeAttribute('open');
   };
 
   return (
@@ -25,7 +30,7 @@ export default function AddTodoList({ addTodoList }: { addTodoList: (todoList: I
         <PlusIcon className="w-6 h-6" />
       </button>
 
-      <dialog id="my_modal_2" className="modal">
+      <dialog id="my_modal_2" className="modal" ref={dialogRef}>
         <div className="modal-box">
           <h3 className="font-bold text-lg">Add a new Todo List</h3>
           <div className="flex flex-col gap-2 py-8">

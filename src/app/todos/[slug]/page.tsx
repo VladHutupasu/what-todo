@@ -2,12 +2,12 @@
 
 import AddTodo from '@features/AddTodo/AddTodo';
 import Todo from '@features/Todo/Todo';
-import useTodos from '@features/Todo/todoHook';
+import useLocalStorageTodos from '@features/Todo/localStorageTodoHook';
 import TodosStatus from '@features/TodosStatus/TodosStatus';
 import { useParams } from 'next/navigation';
 
 export default function TodoOverview() {
-  const { getTodoList, getTodoItems, addTodoItem, deleteTodoItem, updateTodoItem } = useTodos();
+  const { getTodoList, getTodoItems, addTodoItem, deleteTodoItem, updateTodoItem } = useLocalStorageTodos();
   const { slug } = useParams<{ slug: string }>();
   const todoListId = +slug;
 

@@ -11,10 +11,13 @@ model TodoList {
   id              String    @id @default(auto()) @map("_id") @db.ObjectId
   title           String
   description     String
-  items           TodoItems[]
+  items           TodoItem[]
 }
 
-type TodoItems {
-  text      String
-  completed Boolean
+model TodoItem {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  text        String
+  completed   Boolean
+  todoList    TodoList  @relation(fields: [todoListId], references: [id])
+  todoListId  String    @db.ObjectId
 }

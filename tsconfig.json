@@ -21,7 +21,8 @@
       "@shared/*": ["./src/components/shared/*"],
       "@core/*": ["./src/components/core/*"],
       "@features/*": ["./src/components/features/*"],
-      "@context/*": ["./src/context/*"]
+      "@context/*": ["./src/context/*"],
+      "@server/*": ["./src/server/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

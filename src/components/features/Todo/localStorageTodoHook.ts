@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ITodo, ITodoItem } from './Todo.interface';
 
 //TODO: Expose less methods
-export default function useTodos() {
+export default function useLocalStorageTodos() {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
   const LOCAL_STORAGE_KEY = 'todos';
