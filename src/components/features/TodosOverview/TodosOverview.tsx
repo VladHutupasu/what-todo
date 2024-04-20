@@ -1,3 +1,5 @@
+'use client'; // This is a client component 👈
+
 import AddTodoList from '@features/AddTodoList/AddTodoList';
 import { ITodo } from '@features/Todo/Todo.interface';
 import useTodos from '@features/Todo/todoHook';
