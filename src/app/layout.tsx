@@ -32,7 +32,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ThemeProvider>
-          <div className="flex min-h-svh flex-col font-mono px-6 md:px-0 md:w-2/3 m-auto">
+          <div className="flex min-h-svh flex-col font-mono px-6 md:px-0 md:w-4/5 m-auto">
             <Header />
             {children}
           </div>

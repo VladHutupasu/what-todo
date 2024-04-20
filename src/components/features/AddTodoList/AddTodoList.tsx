@@ -25,8 +25,9 @@ export default function AddTodoList() {
     }
 
     const todo = await response.json();
-    console.log('Created', todo);
-    dialogRef.current?.removeAttribute('open');
+
+    dialogRef.current?.close();
+    router.refresh();
   };
 
   return (

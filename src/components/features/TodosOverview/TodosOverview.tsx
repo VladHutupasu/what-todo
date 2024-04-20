@@ -4,9 +4,7 @@ import { getTodos } from '@server/db/queries';
 import Card from '@shared/Card/Card';
 
 export default async function TodosOverview() {
-  console.log('Fetching todos...');
   const todos = await getTodos();
-  console.log('Fetched todos:', todos.length);
 
   return (
     <>
