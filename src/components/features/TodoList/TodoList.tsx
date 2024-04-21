@@ -27,7 +27,7 @@ export default function TodoList({ todo }: { todo: ITodo }) {
               <TrashIcon className="w-4 h-4" />
               <span className="hidden md:block">Delete</span>
             </button>
-            <Link role="button" href={`/todos/${todo.id}`} className="btn btn-outline btn-sm">
+            <Link role="button" href={`/todo-list/${todo.id}`} className="btn btn-outline btn-sm">
               <EyeIcon className="w-4 h-4" />
               <span className="hidden md:block">Open</span>
             </Link>
