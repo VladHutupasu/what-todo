@@ -9,5 +9,5 @@ export interface ITodoItem {
   id?: string;
   text: string;
   completed: boolean;
-  todoListId?: string;
+  todoListId: string;
 }

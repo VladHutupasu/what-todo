@@ -1,6 +1,6 @@
 'use server-only';
 
-import { ITodo } from '@features/Todo/Todo.interface';
+import { ITodo, ITodoItem } from '@features/Todo/Todo.interface';
 import { db } from './config';
 
 export async function getTodos(): Promise<ITodo[]> {
@@ -31,6 +31,36 @@ export async function createTodo(todo: ITodo) {
           completed: false,
         },
       },
+    },
+  });
+}
+
+export async function deleteTodoItem(todoItemId: string) {
+  return await db.todoItem.delete({
+    where: {
+      id: todoItemId,
+    },
+  });
+}
+
+export async function createTodoItem(todoItem: ITodoItem) {
+  return await db.todoItem.create({
+    data: {
+      text: todoItem.text,
+      completed: todoItem.completed,
+      todoListId: todoItem.todoListId,
+    },
+  });
+}
+
+export async function updateTodoItem(todoItem: ITodoItem) {
+  return await db.todoItem.update({
+    where: {
+      id: todoItem.id,
+    },
+    data: {
+      text: todoItem.text,
+      completed: todoItem.completed,
     },
   });
 }

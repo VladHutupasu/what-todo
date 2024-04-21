@@ -1,5 +1,7 @@
 'use client';
 
+import AddTodo from '@features/AddTodo/AddTodo';
+import Todo from '@features/Todo/Todo';
 import { ITodo } from '@features/Todo/Todo.interface';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -9,11 +11,15 @@ export default function TodoOverview() {
   const todoListId = slug;
   const [todoList, setTodoList] = useState<ITodo | null>(null);
 
+  const fetchTodoList = async () => {
+    const response = await fetch(`/api/getTodo?id=${todoListId}`);
+    const data = await response.json();
+    setTodoList(data);
+  };
+
   useEffect(() => {
-    fetch(`/api/getTodo?id=${todoListId}`)
-      .then(response => response.json())
-      .then(todoList => setTodoList(todoList));
-  }, [todoListId]);
+    fetchTodoList();
+  }, []);
 
   if (!todoList) {
     return <div>Loading...</div>;
@@ -21,15 +27,17 @@ export default function TodoOverview() {
 
   return (
     <>
-      <h1>{todoList.title}</h1>
-      {todoList.items.map(item => (
-        <div key={item.id}>
-          <input type="checkbox" checked={item.completed} />
-          <span>{item.text}</span>
-        </div>
-      ))}
+      <h1 className="text-xl font-semibold my-20">{todoList.title}</h1>
 
-      {/* <h1>{getTodoList(todoListId)?.name}</h1>
+      <AddTodo todoListId={todoListId} onTodoAdded={fetchTodoList} />
+
+      <section className="mt-10">
+        {todoList.items.map(item => (
+          <Todo key={item.id} todo={item} onTodoDeleted={fetchTodoList} onTodoChecked={fetchTodoList} />
+        ))}
+      </section>
+
+      {/*
 
       <div className="mt-20">
         <AddTodo addTodoItem={addTodoItem} todoListId={todoListId} />

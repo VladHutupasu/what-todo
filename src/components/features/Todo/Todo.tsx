@@ -2,14 +2,35 @@ import { TrashIcon } from '@heroicons/react/24/outline';
 import { ITodoItem } from './Todo.interface';
 
 export default function Todo({
-  handleDeleteTodo,
-  handleCheckboxTodo,
   todo,
+  onTodoDeleted,
+  onTodoChecked,
 }: {
-  handleDeleteTodo: () => void;
-  handleCheckboxTodo: (checked: boolean) => void;
   todo: ITodoItem;
+  onTodoDeleted: () => void;
+  onTodoChecked: () => void;
 }) {
+  const handleDeleteTodo = async () => {
+    console.log('Delete todo');
+    await fetch(`/api/todoItem?id=${todo.id}`, {
+      method: 'DELETE',
+    });
+    onTodoDeleted();
+  };
+
+  const handleCheckboxTodo = async (checked: boolean) => {
+    console.log('Checkbox todo', checked);
+    todo.completed = checked;
+    await fetch(`/api/todoItem`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(todo),
+    });
+    onTodoChecked();
+  };
+
   return (
     <div className="flex flex-col">
       <label className="cursor-pointer label justify-start hover:bg-secondary hover:bg-opacity-5 rounded">

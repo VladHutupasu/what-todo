@@ -1,20 +1,22 @@
 import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
 import { useState } from 'react';
-import { ITodoItem } from '../Todo/Todo.interface';
 
-export default function AddTodo({
-  addTodoItem,
-  todoListId,
-}: {
-  addTodoItem: (todoItem: ITodoItem, todoListId: number) => void;
-  todoListId: number;
-}) {
+export default function AddTodo({ todoListId, onTodoAdded }: { todoListId: string; onTodoAdded: () => void }) {
   const [inputValue, setInputValue] = useState<string>('');
 
-  const handleAddTodo = () => {
+  const handleAddTodo = async () => {
     if (!inputValue) return;
-    addTodoItem({ text: inputValue, completed: false }, todoListId);
+
+    const response = await fetch(`/api/todoItem`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text: inputValue, completed: false, todoListId }),
+    });
+
     setInputValue('');
+    onTodoAdded();
   };
 
   return (
