@@ -24,20 +24,20 @@ export default function AddTodoList() {
       return;
     }
 
-    const todo = await response.json();
-
     dialogRef.current?.close();
     router.refresh();
   };
 
   return (
     <>
-      <button
-        className="btn btn-secondary btn-circle ml-auto"
-        onClick={() => (document?.getElementById('my_modal_2') as HTMLDialogElement)?.showModal()}
-      >
-        <PlusIcon className="w-6 h-6" />
-      </button>
+      <div>
+        <button
+          className="btn btn-secondary btn-circle fixed top-[93%] left-[93%]"
+          onClick={() => (document?.getElementById('my_modal_2') as HTMLDialogElement)?.showModal()}
+        >
+          <PlusIcon className="w-6 h-6" />
+        </button>
+      </div>
 
       <dialog id="my_modal_2" className="modal" ref={dialogRef}>
         <div className="modal-box">
