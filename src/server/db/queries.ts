@@ -25,12 +25,6 @@ export async function createTodo(todo: ITodo) {
     data: {
       title: todo.title,
       description: todo.description,
-      items: {
-        create: {
-          text: 'Item 1 (default)',
-          completed: false,
-        },
-      },
     },
   });
 }
