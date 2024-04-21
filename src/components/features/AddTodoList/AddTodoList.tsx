@@ -32,14 +32,14 @@ export default function AddTodoList() {
     <>
       <div>
         <button
-          className="btn btn-secondary btn-circle fixed top-[93%] left-[93%]"
-          onClick={() => (document?.getElementById('my_modal_2') as HTMLDialogElement)?.showModal()}
+          className="btn btn-primary btn-circle fixed top-[93%] left-[85%] md:left-[93%] shadow-2xl"
+          onClick={() => (document?.getElementById('add-todo-list-modal') as HTMLDialogElement)?.showModal()}
         >
           <PlusIcon className="w-6 h-6" />
         </button>
       </div>
 
-      <dialog id="my_modal_2" className="modal" ref={dialogRef}>
+      <dialog id="add-todo-list-modal" className="modal" ref={dialogRef}>
         <div className="modal-box">
           <h3 className="font-bold text-lg">Add a new Todo List</h3>
           <div className="flex flex-col gap-2 py-8">
@@ -60,7 +60,7 @@ export default function AddTodoList() {
           </div>
 
           <div className="modal-action mt-0">
-            <button className="btn btn-secondary" onClick={addNewTodoList}>
+            <button className="btn btn-primary" onClick={addNewTodoList}>
               Add
             </button>
           </div>

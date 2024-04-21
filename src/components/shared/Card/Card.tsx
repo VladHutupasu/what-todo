@@ -1,6 +1,7 @@
 'use client';
 
 import { ITodo } from '@features/Todo/Todo.interface';
+import { EyeIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -17,16 +18,18 @@ export default function Card({ todo }: { todo: ITodo }) {
 
   return (
     <>
-      <div className="card w-64 bg-primary text-primary-content">
+      <div className="card w-40 md:w-64 bg-neutral text-neutral-content shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">{todo.title}</h2>
-          <p>{todo.description}</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-warning" onClick={handleDeleteTodoList}>
-              Delete
+          <h2 className="card-title pl-3">{todo.title}</h2>
+          <p className="pl-3">{todo.description}</p>
+          <div className="card-actions justify-between flex-nowrap mt-6">
+            <button className="btn btn-outline btn-sm btn-error" onClick={handleDeleteTodoList}>
+              <TrashIcon className="w-4 h-4" />
+              <span className="hidden md:block">Delete</span>
             </button>
-            <Link role="button" href={`/todos/${todo.id}`} className="btn">
-              Open
+            <Link role="button" href={`/todos/${todo.id}`} className="btn btn-outline btn-sm">
+              <EyeIcon className="w-4 h-4" />
+              <span className="hidden md:block">Open</span>
             </Link>
           </div>
         </div>

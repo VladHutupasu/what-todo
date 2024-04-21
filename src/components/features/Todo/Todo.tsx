@@ -33,16 +33,16 @@ export default function Todo({
 
   return (
     <div className="flex flex-col">
-      <label className="cursor-pointer label justify-start hover:bg-secondary hover:bg-opacity-5 rounded">
+      <label className="cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
         <input
           type="checkbox"
           checked={todo.completed}
           onChange={e => handleCheckboxTodo(e.target.checked)}
-          className="checkbox checkbox-secondary"
+          className="checkbox checkbox-primary"
         />
         <span className={`label-text ml-3 ${todo.completed ? 'line-through' : ''}`}>{todo.text}</span>
-        <button className="btn btn-ghost p-2 ml-auto" onClick={handleDeleteTodo}>
-          <TrashIcon className="h-6 w-6 text-secondary " />
+        <button className="btn btn-ghost ml-auto" onClick={handleDeleteTodo}>
+          <TrashIcon className="h-4 w-4 text-error " />
         </button>
       </label>
     </div>

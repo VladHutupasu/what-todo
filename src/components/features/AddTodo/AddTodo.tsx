@@ -21,7 +21,7 @@ export default function AddTodo({ todoListId, onTodoAdded }: { todoListId: strin
 
   return (
     <>
-      <label className="input input-bordered flex input-secondary w-full max-w-xs items-center gap-2 pr-0">
+      <label className="input input-bordered flex input-primary w-full max-w-xs items-center gap-2 pr-0">
         <input
           type="text"
           className="grow"
@@ -35,7 +35,7 @@ export default function AddTodo({ todoListId, onTodoAdded }: { todoListId: strin
           }}
         />
         <button className="btn btn-ghost">
-          <PlusIcon className="h-6 w-6" onClick={handleAddTodo} />
+          <PlusIcon className="h-4 w-4" onClick={handleAddTodo} />
         </button>
       </label>
     </>
