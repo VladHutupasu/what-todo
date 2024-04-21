@@ -3,8 +3,6 @@ import { ITodo } from '@features/Todo/Todo.interface';
 import { getTodos } from '@server/db/queries';
 import Card from '@shared/Card/Card';
 
-export const dynamic = 'force-dynamic';
-
 export default async function TodosOverview() {
   const todos = await getTodos();
 

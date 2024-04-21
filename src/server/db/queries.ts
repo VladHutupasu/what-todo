@@ -1,7 +1,10 @@
+'use server-only';
+
 import { ITodo } from '@features/Todo/Todo.interface';
-import { db } from '.';
+import { db } from './config';
 
 export async function getTodos(): Promise<ITodo[]> {
+  console.log('Fetching todos...');
   const todos = await db.todoList.findMany();
   return todos as unknown as ITodo[];
 }
