@@ -1,6 +1,6 @@
 'use server-only';
 
-import { ITodo, ITodoItem } from '@features/Todo/Todo.interface';
+import { ITodo, ITodoItem } from '@features/TodoItem/Todo.interface';
 import { db } from './config';
 
 export async function getTodos(): Promise<ITodo[]> {

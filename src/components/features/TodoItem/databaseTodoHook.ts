@@ -1,6 +1,6 @@
 'use client'; // This is a client component 👈
 
-import { ITodo } from '@features/Todo/Todo.interface';
+import { ITodo } from '@features/TodoItem/Todo.interface';
 import { useEffect, useState } from 'react';
 
 export default function useDatabaseTodos() {

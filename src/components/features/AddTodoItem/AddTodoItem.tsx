@@ -1,22 +1,20 @@
+import { ITodoItem } from '@features/TodoItem/Todo.interface';
 import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
 import { useState } from 'react';
 
-export default function AddTodo({ todoListId, onTodoAdded }: { todoListId: string; onTodoAdded: () => void }) {
+export default function AddTodoItem({
+  todoListId,
+  onTodoItemAdded,
+}: {
+  todoListId: string;
+  onTodoItemAdded: (todoItem: ITodoItem) => void;
+}) {
   const [inputValue, setInputValue] = useState<string>('');
 
-  const handleAddTodo = async () => {
+  const handleAddTodo = () => {
     if (!inputValue) return;
-
-    const response = await fetch(`/api/todoItem`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text: inputValue, completed: false, todoListId }),
-    });
-
     setInputValue('');
-    onTodoAdded();
+    onTodoItemAdded({ text: inputValue, completed: false, todoListId });
   };
 
   return (
@@ -34,8 +32,8 @@ export default function AddTodo({ todoListId, onTodoAdded }: { todoListId: strin
             }
           }}
         />
-        <button className="btn btn-ghost">
-          <PlusIcon className="h-4 w-4" onClick={handleAddTodo} />
+        <button className="btn btn-ghost" onClick={handleAddTodo}>
+          <PlusIcon className="h-4 w-4" />
         </button>
       </label>
     </>

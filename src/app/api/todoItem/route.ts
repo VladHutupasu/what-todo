@@ -1,11 +1,14 @@
-import { ITodoItem } from '@features/Todo/Todo.interface';
+import { ITodoItem } from '@features/TodoItem/Todo.interface';
 import { createTodoItem, deleteTodoItem, updateTodoItem } from '@server/db';
 
 export async function POST(request: Request) {
   const todoItem = (await request.json()) as ITodoItem;
-  await createTodoItem(todoItem);
-  return new Response(null, {
-    status: 201,
+  const newTodoItem = await createTodoItem(todoItem);
+  return new Response(JSON.stringify(newTodoItem), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 }
 
@@ -18,7 +21,7 @@ export async function DELETE(request: Request) {
   }
   await deleteTodoItem(todoItemId);
   return new Response(null, {
-    status: 204,
+    status: 200,
   });
 }
 

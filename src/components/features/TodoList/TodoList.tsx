@@ -1,11 +1,11 @@
 'use client';
 
-import { ITodo } from '@features/Todo/Todo.interface';
+import { ITodo } from '@features/TodoItem/Todo.interface';
 import { EyeIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export default function Card({ todo }: { todo: ITodo }) {
+export default function TodoList({ todo }: { todo: ITodo }) {
   const router = useRouter();
 
   const handleDeleteTodoList = async () => {

@@ -1,4 +1,4 @@
-import TodosOverview from '@features/TodosOverview/TodosOverview';
+import TodoListsOverview from '@features/TodoListsOverview/TodoListsOverview';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 0; Same thing?
@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export default async function Home() {
   return (
     <>
-      <TodosOverview />
+      <TodoListsOverview />
     </>
   );
 }
