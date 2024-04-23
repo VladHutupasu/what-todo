@@ -1,5 +1,5 @@
-import { ITodoItem } from '@features/TodoItem/Todo.interface';
 import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
+import { ITodoItem } from '@shared/models/Todo.interface';
 import { useState } from 'react';
 
 export default function AddTodoItem({
@@ -19,7 +19,7 @@ export default function AddTodoItem({
 
   return (
     <>
-      <label className="input input-bordered flex input-primary w-full max-w-xs items-center gap-2 pr-0">
+      <label className="input input-bordered flex input-primary max-w-xs items-center gap-2 pr-0">
         <input
           type="text"
           className="grow"

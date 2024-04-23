@@ -9,6 +9,13 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'What Todo 📋',
   description: 'App that handles your todos',
+  manifest: '/manifest.json',
+  viewport:
+    'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover, interactiveWidget: resizes-visual',
+  icons: [
+    { rel: 'apple-touch-icon', url: 'icons/apple-touch-icon.png' },
+    { rel: 'icon', url: 'icons/apple-touch-icon.png' },
+  ],
 };
 
 export default function RootLayout({

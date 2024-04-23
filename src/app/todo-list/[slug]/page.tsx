@@ -1,8 +1,8 @@
 'use client';
 
 import AddTodoItem from '@features/AddTodoItem/AddTodoItem';
-import { ITodo, ITodoItem } from '@features/TodoItem/Todo.interface';
 import TodoItem from '@features/TodoItem/TodoItem';
+import { ITodo, ITodoItem } from '@shared/models/Todo.interface';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -110,7 +110,7 @@ export default function TodoOverview() {
 
   useEffect(() => {
     const fetchTodoList = async () => {
-      const response = await fetch(`/api/getTodo?id=${todoListId}`);
+      const response = await fetch(`/api/getTodoList?id=${todoListId}`);
       const data = await response.json();
       setTodoList(data);
     };
@@ -118,26 +118,45 @@ export default function TodoOverview() {
     fetchTodoList();
   }, [todoListId]);
 
-  if (!todoList) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <>
-      <h1 className="text-xl font-semibold my-20">{todoList.title}</h1>
+      {!todoList && (
+        <>
+          <div className="skeleton h-6 w-1/4 my-20"></div>
+          <div className="skeleton h-10 max-w-xs"></div>
+          <div className="flex flex-col mt-14 gap-4">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div key={index} className="flex h-10 w-full my-2 items-center">
+                <div className="skeleton h-8 w-8 rounded"></div>
+                <div className="skeleton h-6 w-3/4 ml-3"></div>
+                <div className="skeleton h-6 w-6 rounded ml-auto"></div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
-      <AddTodoItem todoListId={todoListId} onTodoItemAdded={handleTodoItemAdded} />
+      {todoList && (
+        <>
+          <h1 className="text-xl font-semibold my-20">{todoList.title}</h1>
 
-      <section className="mt-10">
-        {todoList.items.map(item => (
-          <TodoItem
-            key={item.id}
-            todoItem={item}
-            onTodoItemDeleted={handleTodoItemDeleted}
-            onTodoItemCompleted={handleTodoItemCompleted}
-          />
-        ))}
-      </section>
+          <AddTodoItem todoListId={todoListId} onTodoItemAdded={handleTodoItemAdded} />
+
+          <section className="mt-10">
+            {todoList.items.map(item => (
+              <>
+                <TodoItem
+                  key={item.id}
+                  todoItem={item}
+                  onTodoItemDeleted={handleTodoItemDeleted}
+                  onTodoItemCompleted={handleTodoItemCompleted}
+                />
+                <p>{item.id}</p>
+              </>
+            ))}
+          </section>
+        </>
+      )}
     </>
   );
 }

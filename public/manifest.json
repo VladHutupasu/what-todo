@@ -1,0 +1,35 @@
+{
+    "name": "What Todo",
+    "short_name": "What Todo",
+    "theme_color": "#1d232a",
+    "background_color": "#1d232a",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "type": "image/png",
+          "sizes": "192x192"
+        },
+        {
+          "src": "/icons/icon-512x512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        },
+        {
+          "src": "/icons/icon-maskable-192x192.png",
+          "type": "image/png",
+          "sizes": "192x192",
+          "purpose": "maskable"
+        },
+        {
+          "src": "/icons/icon-maskable-512x512.png",
+          "type": "image/png",
+          "sizes": "512x512",
+          "purpose": "maskable"
+        }
+      ],
+    "splash_pages": null
+  }

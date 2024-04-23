@@ -1,5 +1,5 @@
-import { ITodoItem } from '@features/TodoItem/Todo.interface';
 import { createTodoItem, deleteTodoItem, updateTodoItem } from '@server/db';
+import { ITodoItem } from '@shared/models/Todo.interface';
 
 export async function POST(request: Request) {
   const todoItem = (await request.json()) as ITodoItem;

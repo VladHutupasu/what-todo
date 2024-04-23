@@ -12,7 +12,7 @@ export default function Header() {
     <>
       <div className="flex items-center justify-between mt-4">
         <h1 className="text-3xl">
-          <Link role="button" href={`/`}>
+          <Link role="button" href="/">
             📋 What Todo
           </Link>
         </h1>

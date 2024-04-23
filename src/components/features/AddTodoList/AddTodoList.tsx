@@ -11,7 +11,7 @@ export default function AddTodoList() {
   const router = useRouter();
 
   const addNewTodoList = async () => {
-    const response = await fetch('/api/createTodo', {
+    const response = await fetch('/api/createTodoList', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export default function AddTodoList() {
     <>
       <div>
         <button
-          className="btn btn-primary btn-circle fixed top-[93%] left-[85%] md:left-[93%] shadow-2xl"
+          className="btn btn-primary btn-circle fixed top-[88%] left-[83%] md:top-[93%] md:left-[93%] shadow-2xl"
           onClick={() => (document?.getElementById('add-todo-list-modal') as HTMLDialogElement)?.showModal()}
         >
           <PlusIcon className="w-6 h-6" />

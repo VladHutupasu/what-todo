@@ -1,5 +1,5 @@
 import { TrashIcon } from '@heroicons/react/24/outline';
-import { ITodoItem } from './Todo.interface';
+import { ITodoItem } from '@shared/models/Todo.interface';
 
 export default function TodoItem({
   todoItem,

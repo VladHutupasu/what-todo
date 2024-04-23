@@ -1,7 +1,7 @@
 import AddTodoList from '@features/AddTodoList/AddTodoList';
-import { ITodo } from '@features/TodoItem/Todo.interface';
 import TodoList from '@features/TodoList/TodoList';
 import { getTodos } from '@server/db/queries';
+import { ITodo } from '@shared/models/Todo.interface';
 
 export default async function TodoListsOverview() {
   const todos = await getTodos();

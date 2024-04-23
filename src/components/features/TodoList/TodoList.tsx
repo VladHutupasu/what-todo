@@ -1,7 +1,7 @@
 'use client';
 
-import { ITodo } from '@features/TodoItem/Todo.interface';
 import { EyeIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { ITodo } from '@shared/models/Todo.interface';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -10,7 +10,7 @@ export default function TodoList({ todo }: { todo: ITodo }) {
 
   const handleDeleteTodoList = async () => {
     if (!todo.id) return;
-    await fetch(`/api/deleteTodo?id=${todo.id}`, {
+    await fetch(`/api/deleteTodoList?id=${todo.id}`, {
       method: 'DELETE',
     });
     router.refresh();
@@ -27,7 +27,7 @@ export default function TodoList({ todo }: { todo: ITodo }) {
               <TrashIcon className="w-4 h-4" />
               <span className="hidden md:block">Delete</span>
             </button>
-            <Link role="button" href={`/todo-list/${todo.id}`} className="btn btn-outline btn-sm">
+            <Link role="button" href={`/todo-list/${todo.id}`} className="btn btn-outline btn-sm text-neutral-content">
               <EyeIcon className="w-4 h-4" />
               <span className="hidden md:block">Open</span>
             </Link>
