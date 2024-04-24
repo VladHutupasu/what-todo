@@ -2,14 +2,14 @@
 
 import AddTodoItem from '@features/AddTodoItem/AddTodoItem';
 import TodoItem from '@features/TodoItem/TodoItem';
-import { ITodo, ITodoItem } from '@shared/models/Todo.interface';
+import { ITodoItem, ITodoList } from '@shared/models/Todo.interface';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function TodoOverview() {
   const { slug } = useParams<{ slug: string }>();
   const todoListId = slug;
-  const [todoList, setTodoList] = useState<ITodo | null>(null);
+  const [todoList, setTodoList] = useState<ITodoList | null>(null);
 
   const handleTodoItemAdded = async (todoItem: ITodoItem) => {
     // Generate a temporary id

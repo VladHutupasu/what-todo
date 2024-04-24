@@ -1,11 +1,11 @@
 'use client';
 
 import { EyeIcon, TrashIcon } from '@heroicons/react/24/outline';
-import { ITodo } from '@shared/models/Todo.interface';
+import { ITodoList } from '@shared/models/Todo.interface';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export default function TodoList({ todo }: { todo: ITodo }) {
+export default function TodoList({ todo }: { todo: ITodoList }) {
   const router = useRouter();
 
   const handleDeleteTodoList = async () => {

@@ -12,19 +12,19 @@ export type ThemeContextType = {
   changeTheme: (theme: Theme) => void;
 };
 const themeContextDefaultValue: ThemeContextType = {
-  theme: 'light',
+  theme: 'dark',
   changeTheme: () => {},
 };
 
 export const ThemeContext = createContext<ThemeContextType>(themeContextDefaultValue);
 
 export const ThemeProvider = ({ children }: Props) => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    const localStorageTheme = (localStorage.getItem('theme') as Theme) || 'light';
+    const localStorageTheme = (localStorage.getItem('theme') as Theme) || 'dark';
     setTheme(localStorageTheme);
   }, []);
 
