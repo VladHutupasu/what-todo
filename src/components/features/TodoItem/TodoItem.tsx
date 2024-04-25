@@ -18,9 +18,13 @@ export default function TodoItem({
         onChange={e => onTodoItemCompleted(todoItem, e.target.checked)}
         className="checkbox checkbox-primary"
       />
-      <span className={`label-text ml-3 ${todoItem.completed ? 'line-through' : ''}`}>{todoItem.text}</span>
+      <span
+        className={`label-text ml-3 ${todoItem.completed ? 'line-through' : ''}`}
+        style={{ overflowWrap: 'break-word', wordWrap: 'break-word', maxWidth: '75%' }}
+      >
+        {todoItem.text}
+      </span>
       <button className="btn btn-ghost ml-auto" onClick={() => onTodoItemDeleted(todoItem.id!)}>
-        <p>{todoItem.id}</p>
         <TrashIcon className="h-4 w-4 text-error " />
       </button>
     </div>
