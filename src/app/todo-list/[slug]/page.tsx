@@ -6,7 +6,7 @@ import { ITodoItem, ITodoList } from '@shared/models/Todo.interface';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function TodoOverview() {
+export default function TodoListOverview() {
   const { slug } = useParams<{ slug: string }>();
   const todoListId = slug;
   const [todoList, setTodoList] = useState<ITodoList | null>(null);
@@ -144,15 +144,12 @@ export default function TodoOverview() {
 
           <section className="mt-10">
             {todoList.items.map(item => (
-              <>
-                <TodoItem
-                  key={item.id}
-                  todoItem={item}
-                  onTodoItemDeleted={handleTodoItemDeleted}
-                  onTodoItemCompleted={handleTodoItemCompleted}
-                />
-                <p>{item.id}</p>
-              </>
+              <TodoItem
+                key={item.id}
+                todoItem={item}
+                onTodoItemDeleted={handleTodoItemDeleted}
+                onTodoItemCompleted={handleTodoItemCompleted}
+              />
             ))}
           </section>
         </>

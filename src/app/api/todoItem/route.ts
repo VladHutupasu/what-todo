@@ -1,5 +1,6 @@
 import { createTodoItem, deleteTodoItem, updateTodoItem } from '@server/db';
 import { ITodoItem } from '@shared/models/Todo.interface';
+import { NextRequest } from 'next/server';
 
 export async function POST(request: Request) {
   const todoItem = (await request.json()) as ITodoItem;
@@ -12,8 +13,8 @@ export async function POST(request: Request) {
   });
 }
 
-export async function DELETE(request: Request) {
-  const todoItemId = new URL(request.url).searchParams.get('id');
+export async function DELETE(request: NextRequest) {
+  const todoItemId = request.nextUrl.searchParams.get('id');
   if (!todoItemId) {
     return new Response('Missing id parameter', {
       status: 400,
