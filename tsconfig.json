@@ -22,7 +22,8 @@
       "@core/*": ["./src/components/core/*"],
       "@features/*": ["./src/components/features/*"],
       "@context/*": ["./src/context/*"],
-      "@server/*": ["./src/server/*"]
+      "@server/*": ["./src/server/*"],
+      "@actions/*": ["./src/app/actions/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
