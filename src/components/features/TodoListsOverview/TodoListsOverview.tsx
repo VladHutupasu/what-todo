@@ -1,23 +1,45 @@
 'use client';
 
 import { createTodoListAction } from '@actions/createTodoList';
+import { deleteTodoListAction } from '@actions/deleteTodoList';
 import TodoList from '@features/TodoList/TodoList';
 import { ITodoList } from '@shared/models/Todo.interface';
-import { useOptimistic, useRef } from 'react';
+import { useOptimistic, useRef, useTransition } from 'react';
 import AddTodoListFloatingButton from './AddTodoListFloatingButton';
 
 export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[] }) {
   const formRef = useRef<HTMLFormElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [optimisticTodoLists, addOptimisticTodoList] = useOptimistic(todoLists, (state, newTodoList: ITodoList) => {
-    return [...state, newTodoList];
-  });
+  const [isPending, startTransition] = useTransition();
+  const [optimisticTodoLists, addOptimisticTodoList] = useOptimistic(
+    todoLists,
+    (state, { type, newTodoList }: { type: 'update' | 'delete' | 'add'; newTodoList: ITodoList }) => {
+      switch (type) {
+        case 'delete':
+          return state.filter(({ id }) => id !== newTodoList.id);
+        case 'update':
+          return state.map(t => (t.id === newTodoList.id ? newTodoList : t));
+        default:
+          return [...state, newTodoList];
+      }
+    }
+  );
 
   return (
     <>
       <div className="flex flex-wrap gap-5 justify-center content-center mt-24">
         {optimisticTodoLists.map((todoList: ITodoList) => (
-          <TodoList key={todoList.id} todoList={todoList} />
+          <TodoList
+            key={todoList.id}
+            todoList={todoList}
+            handleDeleteTodoList={() =>
+              startTransition(() => {
+                console.log('Deleting todo list', todoList);
+                addOptimisticTodoList({ type: 'delete', newTodoList: todoList });
+                deleteTodoListAction(todoList.id as string);
+              })
+            }
+          />
         ))}
       </div>
 
@@ -30,10 +52,13 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
             action={formData => {
               formRef.current?.reset();
               addOptimisticTodoList({
-                id: Math.random().toString(36).substr(2, 9),
-                title: formData.get('title') as string,
-                description: formData.get('description') as string,
-                items: [],
+                type: 'add',
+                newTodoList: {
+                  id: Date.now().toString(),
+                  title: formData.get('title') as string,
+                  description: formData.get('description') as string,
+                  items: [],
+                },
               });
               createTodoListAction(formData);
             }}
