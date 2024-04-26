@@ -27,14 +27,13 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
 
   return (
     <>
-      <div className="flex flex-wrap gap-5 justify-center content-center mt-24">
+      <div className="flex flex-col flex-wrap gap-3 sm:flex-row sm:gap-5 justify-center content-center mt-24">
         {optimisticTodoLists.map((todoList: ITodoList) => (
           <TodoList
             key={todoList.id}
             todoList={todoList}
             handleDeleteTodoList={() =>
               startTransition(() => {
-                console.log('Deleting todo list', todoList);
                 addOptimisticTodoList({ type: 'delete', newTodoList: todoList });
                 deleteTodoListAction(todoList.id as string);
               })
