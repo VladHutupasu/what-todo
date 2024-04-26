@@ -13,24 +13,21 @@ export default function TodoList({
 }) {
   return (
     <>
-      <div className="card w-full sm:w-64 bg-neutral text-neutral-content shadow-xl">
+      <div className="card card-compact sm:card-normal w-full sm:w-64 sm:h-72 bg-neutral text-neutral-content shadow-xl">
         <div className="card-body">
           <h2 className="card-title">{todoList.title}</h2>
           <p>{todoList.description}</p>
-          <div className="card-actions flex-col sm:flex-row sm:justify-between sm:flex-nowrap mt-6">
-            <button className="btn btn-outline btn-sm btn-error w-full sm:w-auto" onClick={handleDeleteTodoList}>
-              <TrashIcon className="w-4 h-4" />
-              <span>Delete</span>
-            </button>
-            <Link
-              role="button"
-              href={`/todo-list/${todoList.id}`}
-              className="btn btn-outline btn-sm text-neutral-content w-full sm:w-auto"
-            >
-              <EyeIcon className="w-4 h-4" />
-              <span>Open</span>
-            </Link>
-          </div>
+        </div>
+        <div className="card-actions flex-row mt-6 gap-0">
+          <button className="btn btn-md btn-error rounded-none rounded-bl-lg flex-1" onClick={handleDeleteTodoList}>
+            <TrashIcon className="w-5 h-5 text-base-100" />
+          </button>
+          <Link
+            href={`/todo-list/${todoList.id}`}
+            className="btn btn-md btn-ghost rounded-none rounded-br-lg bg-base flex-1"
+          >
+            <EyeIcon className="w-5 h-5 text-neutral-content" />
+          </Link>
         </div>
       </div>
     </>

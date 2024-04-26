@@ -138,7 +138,7 @@ export default function TodoListOverview() {
 
       {todoList && (
         <>
-          <h1 className="text-xl font-semibold my-20">{todoList.title}</h1>
+          <h1 className="text-xl font-semibold mt-28 mb-20">{todoList.title}</h1>
 
           <AddTodoItem todoListId={todoListId} onTodoItemAdded={handleTodoItemAdded} />
 

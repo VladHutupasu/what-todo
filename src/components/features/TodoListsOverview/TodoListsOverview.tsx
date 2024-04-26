@@ -27,7 +27,7 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
 
   return (
     <>
-      <div className="flex flex-col flex-wrap gap-3 sm:flex-row sm:gap-5 justify-center content-center my-16 sm:my-24">
+      <div className="flex flex-col flex-wrap gap-4 sm:flex-row sm:gap-5 justify-center content-center my-24 sm:my-36">
         {optimisticTodoLists.map((todoList: ITodoList) => (
           <TodoList
             key={todoList.id}

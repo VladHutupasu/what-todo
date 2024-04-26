@@ -6,25 +6,25 @@ import Loading from '../../app/loading';
 type Props = {
   children: ReactNode;
 };
-export type Theme = 'light' | 'dark';
+export type Theme = 'nord' | 'dracula';
 export type ThemeContextType = {
   theme: Theme;
   changeTheme: (theme: Theme) => void;
 };
 const themeContextDefaultValue: ThemeContextType = {
-  theme: 'dark',
+  theme: 'dracula',
   changeTheme: () => {},
 };
 
 export const ThemeContext = createContext<ThemeContextType>(themeContextDefaultValue);
 
 export const ThemeProvider = ({ children }: Props) => {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('dracula');
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    const localStorageTheme = (localStorage.getItem('theme') as Theme) || 'dark';
+    const localStorageTheme = (localStorage.getItem('theme') as Theme) || 'dracula';
     setTheme(localStorageTheme);
   }, []);
 
