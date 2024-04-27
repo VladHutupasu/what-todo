@@ -44,7 +44,11 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
 
       <AddTodoListFloatingButton dialogRef={dialogRef} />
 
-      <dialog id="add-todo-list-modal" ref={dialogRef} className="modal focus-within:items-start focus-within:mt-[20%]">
+      <dialog
+        id="add-todo-list-modal"
+        ref={dialogRef}
+        className="modal max-sm:focus-within:items-start max-sm:focus-within:mt-[20%]"
+      >
         <div className="modal-box">
           <h3 className="font-bold text-lg mb-8">Add a new Todo List</h3>
           <form
