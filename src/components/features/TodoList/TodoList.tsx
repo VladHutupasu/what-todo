@@ -13,8 +13,8 @@ export default function TodoList({
 }) {
   return (
     <>
-      <div className="card card-side sm:image-full sm:card-normal w-full sm:w-72  bg-neutral text-neutral-content shadow-xl">
-        <Link href={`/todo-list/${todoList.id}`} className="card-body hover:opacity-70">
+      <div className="card card-side sm:image-full sm:card-normal w-full sm:w-72 bg-neutral text-neutral-content shadow-xl">
+        <Link href={`/todo-list/${todoList.id}`} className="card-body sm:hover:opacity-70">
           <h2 className="card-title">{todoList.title}</h2>
           <p>{todoList.description}</p>
         </Link>
