@@ -211,7 +211,8 @@ export default function RootLayout({
         media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
       />
 
-      <body className="font-mono">
+      {/* TODO: See if touch-pan-y is needed */}
+      <body className="font-mono touch-pan-y">
         <ThemeProvider>
           <Header />
           <div className="flex min-h-svh flex-col px-4 md:px-0 md:w-4/5 m-auto">{children}</div>
