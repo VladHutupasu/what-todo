@@ -1,7 +1,6 @@
 'use client';
 
-import { HomeIcon, PlusIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+import { PlusIcon } from '@heroicons/react/24/outline';
 
 export default function AddTodoListFloatingButton({ dialogRef }: { dialogRef?: React.RefObject<HTMLDialogElement> }) {
   const openModal = () => {
@@ -16,17 +15,6 @@ export default function AddTodoListFloatingButton({ dialogRef }: { dialogRef?: R
           onClick={openModal}
         >
           <PlusIcon className="w-6 h-6" />
-        </button>
-      </div>
-
-      <div className="md:hidden btm-nav text-primary bg-transparent backdrop-blur-lg">
-        <button>
-          <Link href="/">
-            <HomeIcon className="w-5 h-5" />
-          </Link>
-        </button>
-        <button onClick={openModal}>
-          <PlusIcon className="w-5 h-5" />
         </button>
       </div>
     </>

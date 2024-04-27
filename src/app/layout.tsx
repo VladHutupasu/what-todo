@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@context/ThemeContext/ThemeContext';
 import Header from '@core/Header';
+import MobileNavbar from '@core/MobileNavbar';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
@@ -219,6 +220,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           <div className="flex min-h-svh flex-col px-4 md:px-0 md:w-4/5 m-auto">{children}</div>
+          <MobileNavbar />
         </ThemeProvider>
       </body>
     </html>
