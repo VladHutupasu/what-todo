@@ -19,7 +19,7 @@ export default function DesktopAddTodoItem({
 
   return (
     <>
-      <label className="hidden md:flex input input-bordered flex input-primary max-w-xs items-center gap-2 pr-0">
+      <label className="hidden md:flex input input-bordered flex input-primary max-w-xs items-center gap-2 pr-0 mb-8">
         <input
           type="text"
           className="grow"

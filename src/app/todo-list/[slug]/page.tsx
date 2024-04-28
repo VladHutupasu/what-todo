@@ -139,11 +139,16 @@ export default function TodoListOverview() {
 
       {todoList && (
         <>
-          <h1 className="text-xl font-semibold mt-28 mb-20">{todoList.title}</h1>
+          <section className="mt-32">
+            <h1 className="text-xl font-semibold leading-10">{todoList.title}</h1>
+            <p className="label-text">{todoList.description}</p>
+          </section>
+
+          <div className="divider divider-primary my-11 sm:my-16"></div>
 
           <DesktopAddTodoItem todoListId={todoListId} onTodoItemAdded={handleTodoItemAdded} />
 
-          <section className="mt-10">
+          <section>
             {todoList.items.map(item => (
               <TodoItem
                 key={item.id}
