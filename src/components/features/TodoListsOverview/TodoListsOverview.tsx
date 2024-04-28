@@ -83,7 +83,15 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
           >
             <input type="text" name="title" placeholder="Name" className="input input-bordered" />
             <input type="text" name="description" placeholder="Description" className="input input-bordered" />
-            <button type="submit" className="btn btn-primary" onClick={() => dialogRef.current?.close()}>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={() => dialogRef.current?.close()}
+              onTouchEnd={e => {
+                e.preventDefault();
+                dialogRef.current?.close();
+              }}
+            >
               Add
             </button>
           </form>
