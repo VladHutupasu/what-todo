@@ -31,7 +31,7 @@ export default function MobileAddTodoItem({
 
   useEffect(() => {
     if (!isEditing) return;
-    setTimeout(() => inputRef.current?.focus(), 300);
+    setTimeout(() => inputRef.current?.focus(), 1000);
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
         addTodoItem();
