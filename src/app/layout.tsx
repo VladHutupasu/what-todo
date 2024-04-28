@@ -37,13 +37,14 @@ export default function RootLayout({
           }}
         />
 
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" sizes="48x48" />
+        <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
 
         {/* TODO: Cleanup these */}
-        <link rel="apple-touch-icon" href="icons/apple-icon-180.png" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon-180x180.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <link
+
+        {/* <link
           rel="apple-touch-startup-image"
           href="icons/apple-splash-2048-2732.png"
           media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
@@ -212,7 +213,7 @@ export default function RootLayout({
           rel="apple-touch-startup-image"
           href="icons/apple-splash-1136-640.png"
           media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-        />
+        /> */}
       </head>
 
       {/* TODO: See if touch-pan-y is needed */}
