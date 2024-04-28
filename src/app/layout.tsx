@@ -43,6 +43,7 @@ export default function RootLayout({
 
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon-180x180.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#282a36" />
 
         {appleTouchStartupImages.map((image, index) => (
           <link key={index} rel="apple-touch-startup-image" href={image.href} media={image.media} />
