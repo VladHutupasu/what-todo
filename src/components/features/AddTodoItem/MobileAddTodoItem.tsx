@@ -54,7 +54,7 @@ export default function MobileAddTodoItem({
             ref={inputRef}
             type="text"
             placeholder="Type here"
-            className="input input-ghost w-full mx-3 focus:outline-none border-none label-text"
+            className="input input-ghost w-full mx-3 focus:outline-none border-none"
           />
           <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
             <CheckIcon className="h-4 w-4 text-success " />
