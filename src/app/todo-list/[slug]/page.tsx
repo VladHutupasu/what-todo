@@ -111,6 +111,7 @@ export default function TodoListOverview() {
 
   useEffect(() => {
     const fetchTodoList = async () => {
+      await new Promise(resolve => setTimeout(resolve, 4_000));
       const response = await fetch(`/api/getTodoList?id=${todoListId}`);
       const data = await response.json();
       setTodoList(data);
@@ -123,14 +124,19 @@ export default function TodoListOverview() {
     <>
       {!todoList && (
         <>
-          <div className="skeleton h-6 w-1/4 my-20"></div>
-          <div className="skeleton h-10 max-w-xs"></div>
-          <div className="flex flex-col mt-14 gap-4">
+          <div className="skeleton h-6 w-2/5 mt-32 leading-10"></div>
+          <div className="skeleton h-4 w-1/4 mt-3"></div>
+
+          <div className="divider divider-primary my-11 sm:my-16"></div>
+
+          <div className="hidden sm:block skeleton h-10 max-w-xs mb-8"></div>
+
+          <div className="flex flex-col gap-4">
             {Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="flex h-10 w-full my-2 items-center">
-                <div className="skeleton h-8 w-8 rounded"></div>
+                <div className="skeleton h-6 w-6 rounded"></div>
                 <div className="skeleton h-6 w-3/4 ml-3"></div>
-                <div className="skeleton h-6 w-6 rounded ml-auto"></div>
+                <div className="skeleton h-4 w-4 rounded ml-auto"></div>
               </div>
             ))}
           </div>
