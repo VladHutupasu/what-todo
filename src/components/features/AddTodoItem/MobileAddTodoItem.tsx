@@ -49,6 +49,7 @@ export default function MobileAddTodoItem({
       {isEditing && (
         <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
           <input type="checkbox" className="checkbox checkbox-primary" />
+          Hello?
           <input
             ref={inputRef}
             type="text"
