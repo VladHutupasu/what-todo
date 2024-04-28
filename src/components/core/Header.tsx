@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="navbar backdrop-blur-lg fixed w-full z-50">
+      <div className="navbar bg-base-100 fixed w-full z-50">
         <div className="navbar-start ">
           <Link role="button" className="flex items-center gap-4" href="/">
             <ClipboardIcon className="h-6 w-6 text-primary" />

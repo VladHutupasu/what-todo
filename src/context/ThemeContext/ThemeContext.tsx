@@ -10,16 +10,21 @@ export type Theme = 'nord' | 'dracula';
 export type ThemeContextType = {
   theme: Theme;
   changeTheme: (theme: Theme) => void;
+  plusClicked: number;
+  setPlusClicked: (plusClicked: number) => void;
 };
 const themeContextDefaultValue: ThemeContextType = {
   theme: 'dracula',
   changeTheme: () => {},
+  plusClicked: 0,
+  setPlusClicked: () => {},
 };
 
 export const ThemeContext = createContext<ThemeContextType>(themeContextDefaultValue);
 
 export const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = useState<Theme>('dracula');
+  const [plusClicked, setPlusClicked] = useState<number>(0);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -36,7 +41,7 @@ export const ThemeProvider = ({ children }: Props) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme }}>
+    <ThemeContext.Provider value={{ theme, changeTheme, plusClicked, setPlusClicked }}>
       <div data-theme={theme}>{children}</div>
     </ThemeContext.Provider>
   );

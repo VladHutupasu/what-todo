@@ -10,6 +10,7 @@ export async function getTodoLists(): Promise<ITodoList[]> {
 }
 
 export async function getTodoList(todoListId: string) {
+  console.log('Fetching todo items...');
   return await db.todoList.findUnique({
     where: {
       id: todoListId,

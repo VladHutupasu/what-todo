@@ -2,15 +2,18 @@
 
 import { createTodoListAction } from '@actions/createTodoList';
 import { deleteTodoListAction } from '@actions/deleteTodoList';
+import { ThemeContext } from '@context/ThemeContext/ThemeContext';
 import TodoList from '@features/TodoList/TodoList';
 import { ITodoList } from '@shared/models/Todo.interface';
-import { useOptimistic, useRef, useTransition } from 'react';
+import { useContext, useEffect, useOptimistic, useRef, useTransition } from 'react';
 import AddTodoListFloatingButton from './AddTodoListFloatingButton';
 
 export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[] }) {
   const formRef = useRef<HTMLFormElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [isPending, startTransition] = useTransition();
+  const { plusClicked } = useContext(ThemeContext);
+  const isFirstRender = useRef(true);
   const [optimisticTodoLists, addOptimisticTodoList] = useOptimistic(
     todoLists,
     (state, { type, newTodoList }: { type: 'update' | 'delete' | 'add'; newTodoList: ITodoList }) => {
@@ -24,6 +27,16 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
       }
     }
   );
+
+  useEffect(() => {
+    // Prevent modal to show up on component mount
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    dialogRef.current?.showModal();
+  }, [plusClicked]);
 
   return (
     <>
