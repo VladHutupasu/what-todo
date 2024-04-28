@@ -1,6 +1,7 @@
 'use client';
 
-import AddTodoItem from '@features/AddTodoItem/AddTodoItem';
+import DesktopAddTodoItem from '@features/AddTodoItem/DesktopAddTodoItem';
+import MobileAddTodoItem from '@features/AddTodoItem/MobileAddTodoItem';
 import TodoItem from '@features/TodoItem/TodoItem';
 import { ITodoItem, ITodoList } from '@shared/models/Todo.interface';
 import { useParams } from 'next/navigation';
@@ -140,7 +141,7 @@ export default function TodoListOverview() {
         <>
           <h1 className="text-xl font-semibold mt-28 mb-20">{todoList.title}</h1>
 
-          <AddTodoItem todoListId={todoListId} onTodoItemAdded={handleTodoItemAdded} />
+          <DesktopAddTodoItem todoListId={todoListId} onTodoItemAdded={handleTodoItemAdded} />
 
           <section className="mt-10">
             {todoList.items.map(item => (
@@ -151,6 +152,7 @@ export default function TodoListOverview() {
                 onTodoItemCompleted={handleTodoItemCompleted}
               />
             ))}
+            <MobileAddTodoItem todoListId={todoListId} onTodoItemAdded={handleTodoItemAdded} />
           </section>
         </>
       )}
