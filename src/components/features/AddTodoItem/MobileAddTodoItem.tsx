@@ -31,7 +31,6 @@ export default function MobileAddTodoItem({
 
   useEffect(() => {
     if (!isEditing) return;
-    setTimeout(() => inputRef.current?.focus(), 1000);
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
         addTodoItem();
@@ -55,6 +54,7 @@ export default function MobileAddTodoItem({
             type="text"
             placeholder="Type here"
             className="input input-ghost w-full mx-3 focus:outline-none border-none"
+            autoFocus
           />
           <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
             <CheckIcon className="h-4 w-4 text-success " />
