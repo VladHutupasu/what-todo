@@ -29,8 +29,34 @@ export default function MobileAddTodoItem({
     setIsEditing(true);
   }, [plusClicked]);
 
+  function forceFocus() {
+    // create invisible dummy input to receive the focus first
+    const fakeInput = document.createElement('input');
+    fakeInput.setAttribute('type', 'text');
+    fakeInput.style.position = 'absolute';
+    fakeInput.style.opacity = '0';
+    fakeInput.style.height = '0';
+    fakeInput.style.fontSize = '16px'; // disable auto zoom
+
+    // you may need to append to another element depending on the browser's auto
+    // zoom/scroll behavior
+    document.body.prepend(fakeInput);
+
+    // focus so that subsequent async focus will work
+    fakeInput.focus();
+
+    setTimeout(() => {
+      // now we can focus on the target input
+      inputRef.current?.focus();
+
+      // cleanup
+      fakeInput.remove();
+    }, 1000);
+  }
+
   useEffect(() => {
     if (!isEditing) return;
+    forceFocus();
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
         addTodoItem();
@@ -49,13 +75,11 @@ export default function MobileAddTodoItem({
       {isEditing && (
         <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
           <input type="checkbox" className="checkbox checkbox-primary" />
-          Hello?
           <input
             ref={inputRef}
             type="text"
             placeholder="Type here"
             className="input input-ghost w-full mx-3 focus:outline-none border-none"
-            autoFocus
           />
           <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
             <CheckIcon className="h-4 w-4 text-success " />
