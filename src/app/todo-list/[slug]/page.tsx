@@ -111,7 +111,6 @@ export default function TodoListOverview() {
 
   useEffect(() => {
     const fetchTodoList = async () => {
-      await new Promise(resolve => setTimeout(resolve, 4_000));
       const response = await fetch(`/api/getTodoList?id=${todoListId}`);
       const data = await response.json();
       setTodoList(data);
