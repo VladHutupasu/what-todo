@@ -11,7 +11,16 @@ export default function MobileNavbar() {
   return (
     <div className="md:hidden btm-nav text-primary bg-transparent backdrop-blur-lg">
       <button>
-        <Link href="/">
+        <Link
+          href="/"
+          onClick={() => {
+            if (!window.navigator || !window.navigator.vibrate) {
+              console.log('Cannot vibrate');
+              return;
+            }
+            window.navigator?.vibrate(200);
+          }}
+        >
           <HomeIcon className="w-5 h-5" />
         </Link>
       </button>
