@@ -11,7 +11,7 @@ export default function MobileNavbar() {
   return (
     <>
       {displayMode === 'pwa' && (
-        <div className="md:hidden btm-nav text-primary bg-transparent backdrop-blur-lg">
+        <div className="md:hidden btm-nav btm-nav-lg text-primary bg-transparent backdrop-blur-lg">
           <button>
             <Link href="/">
               <HomeIcon className="w-5 h-5" />
