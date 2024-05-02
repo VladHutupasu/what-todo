@@ -1,3 +1,4 @@
+'use server';
 import { getTodoList } from '@server/db/queries';
 import { NextRequest } from 'next/server';
 

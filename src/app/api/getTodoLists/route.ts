@@ -1,3 +1,4 @@
+'use server';
 import { getTodoLists } from '@server/db/queries';
 
 export async function GET() {

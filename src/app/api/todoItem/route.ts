@@ -1,3 +1,4 @@
+'use server';
 import { createTodoItem, deleteTodoItem, updateTodoItem } from '@server/db';
 import { ITodoItem } from '@shared/models/Todo.interface';
 import { NextRequest } from 'next/server';

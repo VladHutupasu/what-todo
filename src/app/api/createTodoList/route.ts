@@ -1,3 +1,4 @@
+'use server';
 import { createTodoList } from '@server/db/queries';
 
 export async function POST(request: Request) {
