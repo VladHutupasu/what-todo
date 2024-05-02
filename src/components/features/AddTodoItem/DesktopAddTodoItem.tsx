@@ -1,6 +1,7 @@
+import { ContextWrapper } from '@context/ThemeContext/ThemeContext';
 import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
 import { ITodoItem } from '@shared/models/Todo.interface';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 export default function DesktopAddTodoItem({
   todoListId,
@@ -10,6 +11,7 @@ export default function DesktopAddTodoItem({
   onTodoItemAdded: (todoItem: ITodoItem) => void;
 }) {
   const [inputValue, setInputValue] = useState<string>('');
+  const { displayMode } = useContext(ContextWrapper);
 
   const handleAddTodo = () => {
     if (!inputValue) return;
@@ -19,7 +21,11 @@ export default function DesktopAddTodoItem({
 
   return (
     <>
-      <label className="hidden md:flex input input-bordered flex input-primary max-w-xs items-center gap-2 pr-0 mb-8">
+      <label
+        className={`${
+          displayMode === 'pwa' ? 'hidden md:flex' : ''
+        } input input-bordered flex input-primary max-w-xs items-center gap-2 pr-0 mb-8`}
+      >
         <input
           type="text"
           className="grow"

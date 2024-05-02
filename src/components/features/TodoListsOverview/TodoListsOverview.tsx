@@ -2,7 +2,7 @@
 
 import { createTodoListAction } from '@actions/createTodoList';
 import { deleteTodoListAction } from '@actions/deleteTodoList';
-import { ThemeContext } from '@context/ThemeContext/ThemeContext';
+import { ContextWrapper } from '@context/ThemeContext/ThemeContext';
 import TodoList from '@features/TodoList/TodoList';
 import { ITodoList } from '@shared/models/Todo.interface';
 import { useContext, useEffect, useOptimistic, useRef, useTransition } from 'react';
@@ -12,7 +12,7 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
   const formRef = useRef<HTMLFormElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [isPending, startTransition] = useTransition();
-  const { plusClicked } = useContext(ThemeContext);
+  const { plusClicked } = useContext(ContextWrapper);
   const isFirstRender = useRef(true);
   const [optimisticTodoLists, addOptimisticTodoList] = useOptimistic(
     todoLists,
@@ -57,12 +57,9 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
 
       <AddTodoListFloatingButton dialogRef={dialogRef} />
 
-      <dialog
-        id="add-todo-list-modal"
-        ref={dialogRef}
-        className="modal max-sm:focus-within:items-start max-sm:focus-within:mt-[20%]"
-      >
-        <div className="modal-box">
+      {/* TODO: See if this can be used. Did not work on click, was shifting layout - max-sm:focus-within:items-start max-sm:focus-within:mt-[20%] */}
+      <dialog id="add-todo-list-modal" ref={dialogRef} className="modal items-start">
+        <div className="modal-box mt-40">
           <h3 className="font-bold text-lg mb-8">Add a new Todo List</h3>
           <form
             action={formData => {

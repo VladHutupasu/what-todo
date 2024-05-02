@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@context/ThemeContext/ThemeContext';
+import { ContextWrapperProvider } from '@context/ThemeContext/ThemeContext';
 import Header from '@core/Header';
 import MobileNavbar from '@core/MobileNavbar';
 import { appleTouchStartupImages } from '@shared/constants/splashScreenConfig';
@@ -52,11 +52,12 @@ export default function RootLayout({
 
       {/* TODO: See if touch-pan-y is needed */}
       <body className="font-mono touch-pan-y">
-        <ThemeProvider>
+        <ContextWrapperProvider>
           <Header />
           <div className="flex min-h-svh flex-col px-4 md:px-0 md:w-4/5 m-auto">{children}</div>
+          {/* Loads only if PWA && small screen mobile */}
           <MobileNavbar />
-        </ThemeProvider>
+        </ContextWrapperProvider>
       </body>
     </html>
   );

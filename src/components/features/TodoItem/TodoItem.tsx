@@ -11,7 +11,7 @@ export default function TodoItem({
   onTodoItemCompleted: (todoItem: ITodoItem, completed: boolean) => void;
 }) {
   return (
-    <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
+    <div className="flex cursor-pointer label justify-start md:hover:bg-primary md:hover:bg-opacity-5 rounded">
       <input
         type="checkbox"
         checked={todoItem.completed}

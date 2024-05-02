@@ -1,4 +1,4 @@
-import { ThemeContext } from '@context/ThemeContext/ThemeContext';
+import { ContextWrapper } from '@context/ThemeContext/ThemeContext';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ITodoItem } from '@shared/models/Todo.interface';
 import { useContext, useEffect, useRef, useState } from 'react';
@@ -11,7 +11,7 @@ export default function MobileAddTodoItem({
   onTodoItemAdded: (todoItem: ITodoItem) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
-  const { plusClicked } = useContext(ThemeContext);
+  const { displayMode, plusClicked } = useContext(ContextWrapper);
   const isFirstRender = useRef(true);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -44,6 +44,8 @@ export default function MobileAddTodoItem({
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isEditing]);
+
+  if (displayMode !== 'pwa') return null;
 
   return (
     <>

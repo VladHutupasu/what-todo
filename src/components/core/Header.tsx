@@ -1,6 +1,6 @@
 'use client'; // This is a client component 👈
 
-import { ThemeContext, ThemeContextType } from '@context/ThemeContext/ThemeContext';
+import { ContextWrapper, ContextWrapperType } from '@context/ThemeContext/ThemeContext';
 import { ClipboardIcon } from '@heroicons/react/24/outline';
 import MoonIcon from '@heroicons/react/24/outline/MoonIcon';
 import SunIcon from '@heroicons/react/24/outline/SunIcon';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useContext } from 'react';
 
 export default function Header() {
-  const { theme, changeTheme } = useContext<ThemeContextType>(ThemeContext);
+  const { theme, changeTheme } = useContext<ContextWrapperType>(ContextWrapper);
 
   return (
     <>
