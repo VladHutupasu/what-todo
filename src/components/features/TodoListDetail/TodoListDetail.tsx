@@ -41,7 +41,7 @@ export default function TodoListDetail({ todoList }: { todoList: ITodoList }) {
         }
       />
 
-      <section>
+      <section className="mb-28">
         {optimisticTodoItems.map(item => (
           <TodoItem
             key={item.id}
