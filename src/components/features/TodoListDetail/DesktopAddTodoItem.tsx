@@ -16,7 +16,7 @@ export default function DesktopAddTodoItem({
   const handleAddTodo = () => {
     if (!inputValue) return;
     setInputValue('');
-    onTodoItemAdded({ text: inputValue, completed: false, todoListId });
+    onTodoItemAdded({ id: Date.now().toString(), text: inputValue, completed: false, todoListId });
   };
 
   return (

@@ -4,18 +4,18 @@ import { ITodoItem } from '@shared/models/Todo.interface';
 export default function TodoItem({
   todoItem,
   onTodoItemDeleted,
-  onTodoItemCompleted,
+  onTodoItemUpdated,
 }: {
   todoItem: ITodoItem;
-  onTodoItemDeleted: (todoItemId: string) => void;
-  onTodoItemCompleted: (todoItem: ITodoItem, completed: boolean) => void;
+  onTodoItemDeleted: (todoItem: ITodoItem) => void;
+  onTodoItemUpdated: (todoItem: ITodoItem) => void;
 }) {
   return (
     <div className="flex cursor-pointer label justify-start md:hover:bg-primary md:hover:bg-opacity-5 rounded">
       <input
         type="checkbox"
         checked={todoItem.completed}
-        onChange={e => onTodoItemCompleted(todoItem, e.target.checked)}
+        onChange={e => onTodoItemUpdated({ ...todoItem, completed: e.target.checked })}
         className="checkbox checkbox-primary"
       />
       <span
@@ -24,7 +24,7 @@ export default function TodoItem({
       >
         {todoItem.text}
       </span>
-      <button className="btn btn-ghost ml-auto" onClick={() => onTodoItemDeleted(todoItem.id!)}>
+      <button className="btn btn-ghost ml-auto" onClick={() => onTodoItemDeleted(todoItem)}>
         <TrashIcon className="h-4 w-4 text-error " />
       </button>
     </div>

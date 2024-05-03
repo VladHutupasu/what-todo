@@ -11,6 +11,12 @@ export async function getTodoLists(): Promise<ITodoList[]> {
 
 export async function getTodoList(todoListId: string) {
   console.log('Fetching todo items...');
+
+  const isValidObjectId = /^[0-9a-fA-F]{24}$/.test(todoListId);
+
+  if (!isValidObjectId) {
+    return null;
+  }
   return await db.todoList.findUnique({
     where: {
       id: todoListId,
