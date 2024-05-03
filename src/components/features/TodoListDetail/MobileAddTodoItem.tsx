@@ -1,4 +1,4 @@
-import { ContextWrapper } from '@context/ThemeContext/ThemeContext';
+import { ContextWrapper } from '@context/ContextWrapper';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ITodoItem } from '@shared/models/Todo.interface';
 import { useContext, useEffect, useRef, useState } from 'react';

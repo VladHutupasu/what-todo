@@ -1,4 +1,4 @@
-import { ContextWrapperProvider } from '@context/ThemeContext/ThemeContext';
+import { ContextWrapperProvider } from '@context/ContextWrapper';
 import Header from '@core/Header';
 import MobileNavbar from '@core/MobileNavbar';
 import { appleTouchStartupImages } from '@shared/constants/splashScreenConfig';

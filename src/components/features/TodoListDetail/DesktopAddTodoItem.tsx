@@ -1,4 +1,4 @@
-import { ContextWrapper } from '@context/ThemeContext/ThemeContext';
+import { ContextWrapper } from '@context/ContextWrapper';
 import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
 import { ITodoItem } from '@shared/models/Todo.interface';
 import { useContext, useState } from 'react';

@@ -1,4 +1,4 @@
-'use server-only';
+import 'server-only';
 
 import { ITodoItem, ITodoList } from '@shared/models/Todo.interface';
 import db from './config';

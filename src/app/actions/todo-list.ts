@@ -1,6 +1,6 @@
 'use server';
 
-import { createTodoList } from '@server/db';
+import { createTodoList, deleteTodoList } from '@server/db';
 import { revalidatePath } from 'next/cache';
 
 //TODO: Add toaster on error
@@ -13,6 +13,15 @@ export async function createTodoListAction(formData: FormData) {
     });
   } catch (error) {
     console.error('Failed to create todo list', error);
+  }
+  revalidatePath('/');
+}
+
+export async function deleteTodoListAction(todoListId: string) {
+  try {
+    await deleteTodoList(todoListId);
+  } catch (error) {
+    console.error('Failed to delete todo list', error);
   }
   revalidatePath('/');
 }

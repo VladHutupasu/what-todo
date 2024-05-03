@@ -1,7 +1,7 @@
 'use client'; // This is a client component 👈
 
 import { ReactNode, createContext, useEffect, useState } from 'react';
-import Loading from '../../app/loading';
+import Loading from '../app/loading';
 
 type Props = {
   children: ReactNode;

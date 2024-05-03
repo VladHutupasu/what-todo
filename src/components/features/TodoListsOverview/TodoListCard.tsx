@@ -4,7 +4,7 @@ import { TrashIcon } from '@heroicons/react/24/outline';
 import { ITodoList } from '@shared/models/Todo.interface';
 import Link from 'next/link';
 
-export default function TodoList({
+export default function TodoListCard({
   todoList,
   handleDeleteTodoList,
 }: {

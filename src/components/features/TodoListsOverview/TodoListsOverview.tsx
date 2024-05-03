@@ -1,9 +1,8 @@
 'use client';
 
-import { createTodoListAction } from '@actions/createTodoList';
-import { deleteTodoListAction } from '@actions/deleteTodoList';
-import { ContextWrapper } from '@context/ThemeContext/ThemeContext';
-import TodoList from '@features/TodoList/TodoList';
+import { createTodoListAction, deleteTodoListAction } from '@actions/todo-list';
+import { ContextWrapper } from '@context/ContextWrapper';
+import TodoListCard from '@features/TodoListsOverview/TodoListCard';
 import { ITodoList } from '@shared/models/Todo.interface';
 import { useContext, useEffect, useOptimistic, useRef, useTransition } from 'react';
 import AddTodoListFloatingButton from './AddTodoListFloatingButton';
@@ -42,7 +41,7 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
     <>
       <div className="flex flex-col flex-wrap gap-4 sm:flex-row sm:gap-5 justify-center content-center my-24 sm:my-36">
         {optimisticTodoLists.map((todoList: ITodoList) => (
-          <TodoList
+          <TodoListCard
             key={todoList.id}
             todoList={todoList}
             handleDeleteTodoList={() =>
