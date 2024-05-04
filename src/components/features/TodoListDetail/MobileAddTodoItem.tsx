@@ -29,11 +29,6 @@ export default function MobileAddTodoItem({
       return;
     }
 
-    // plusButton.onclick = function () {
-    //   console.log('clicking', inputRef);
-    //   inputRef.current?.focus();
-    // };
-
     const handleClick = () => {
       console.log('clicking', inputRef);
       inputRef.current?.focus();
@@ -47,14 +42,6 @@ export default function MobileAddTodoItem({
     };
   }, []);
 
-  // setTimeout(() => {
-  //   const plusButton = document.getElementById('plus-button');
-  //   plusButton!.onclick = function () {
-  //     console.log('clicking', inputRef);
-  //     inputRef.current?.focus();
-  //   };
-  // }, 2000);
-
   useEffect(() => {
     // Prevent modal to show up on component mount
     if (isFirstRender.current) {
@@ -67,6 +54,10 @@ export default function MobileAddTodoItem({
 
   useEffect(() => {
     if (!isEditing) return;
+
+    requestAnimationFrame(() => {
+      inputRef.current?.focus();
+    });
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
@@ -88,7 +79,7 @@ export default function MobileAddTodoItem({
       {/* {isEditing && ( */}
       <div
         className={
-          // `${isEditing ? 'block' : 'hidden'}` +
+          `${isEditing ? 'block' : 'hidden'}` +
           ' flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded'
         }
       >
