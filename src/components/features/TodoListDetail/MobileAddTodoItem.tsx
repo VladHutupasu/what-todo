@@ -31,7 +31,11 @@ export default function MobileAddTodoItem({
 
   useEffect(() => {
     if (!isEditing) return;
-    inputRef.current?.focus();
+    // inputRef.current?.focus();
+
+    const input2 = document.getElementById('input-test');
+    input2?.focus();
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
         addTodoItem();
@@ -50,6 +54,9 @@ export default function MobileAddTodoItem({
   return (
     <>
       {/* {isEditing && ( */}
+      <div className="flex">
+        <input id="input-test" type="text" />
+      </div>
       <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
         <input type="checkbox" className="checkbox checkbox-primary" />
         <input
