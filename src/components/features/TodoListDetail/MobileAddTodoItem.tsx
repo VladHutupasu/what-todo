@@ -38,7 +38,6 @@ export default function MobileAddTodoItem({
       console.log('clicking', inputRef);
       inputRef.current?.focus();
     };
-
     plusButton.addEventListener('click', handleClick);
 
     // Clean up the event listener when the component unmounts
@@ -89,7 +88,7 @@ export default function MobileAddTodoItem({
       {/* {isEditing && ( */}
       <div
         className={
-          `${isEditing ? 'block' : 'hidden'}` +
+          // `${isEditing ? 'block' : 'hidden'}` +
           ' flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded'
         }
       >
