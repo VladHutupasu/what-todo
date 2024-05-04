@@ -49,24 +49,24 @@ export default function MobileAddTodoItem({
 
   return (
     <>
-      {isEditing && (
-        <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
-          <input type="checkbox" className="checkbox checkbox-primary" />
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Type here"
-            className="input input-ghost w-full mx-3 focus:outline-none border-none"
-            readOnly={!isEditing}
-          />
-          <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
-            <CheckIcon className="h-4 w-4 text-success " />
-          </button>
-          <button className="btn btn-ghost ml-auto" onClick={() => setIsEditing(false)}>
-            <XMarkIcon className="h-4 w-4 text-error " />
-          </button>
-        </div>
-      )}
+      {/* {isEditing && ( */}
+      <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
+        <input type="checkbox" className="checkbox checkbox-primary" />
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Type here"
+          className="input input-ghost w-full mx-3 focus:outline-none border-none"
+          readOnly={!isEditing}
+        />
+        <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
+          <CheckIcon className="h-4 w-4 text-success " />
+        </button>
+        <button className="btn btn-ghost ml-auto" onClick={() => setIsEditing(false)}>
+          <XMarkIcon className="h-4 w-4 text-error " />
+        </button>
+      </div>
+      {/* )} */}
     </>
   );
 }
