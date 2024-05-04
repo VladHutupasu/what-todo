@@ -57,6 +57,7 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
       <AddTodoListFloatingButton dialogRef={dialogRef} />
 
       {/* TODO: See if this can be used. Did not work on click, was shifting layout - max-sm:focus-within:items-start max-sm:focus-within:mt-[20%] */}
+      {/* Lazy load this with condition && ModalComponent to defer bundle load */}
       <dialog id="add-todo-list-modal" ref={dialogRef} className="modal items-start">
         <div className="modal-box mt-40">
           <h3 className="font-bold text-lg mb-8">Add a new Todo List</h3>

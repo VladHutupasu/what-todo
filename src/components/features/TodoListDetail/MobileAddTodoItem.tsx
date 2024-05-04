@@ -16,8 +16,10 @@ export default function MobileAddTodoItem({
   const [shouldFocus, setShouldFocus] = useState(false);
 
   const addTodoItem = () => {
-    onTodoItemAdded({ text: inputRef.current?.value as string, completed: false, todoListId });
     setIsEditing(false);
+    const text = inputRef.current?.value;
+    if (!text) return;
+    onTodoItemAdded({ id: Date.now.toString(), text: text, completed: false, todoListId });
   };
 
   useEffect(() => {
@@ -45,7 +47,7 @@ export default function MobileAddTodoItem({
   }, [shouldFocus]);
 
   useEffect(() => {
-    if (!isEditing) return;
+    if (!isEditing || !inputRef.current) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
@@ -53,11 +55,18 @@ export default function MobileAddTodoItem({
       }
     };
 
+    const handleBlur = () => {
+      addTodoItem();
+    };
+
     document.addEventListener('keydown', handleKeyDown);
+    inputRef.current.addEventListener('blur', handleBlur);
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      inputRef.current?.removeEventListener('blur', handleBlur);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEditing]);
 
   if (displayMode !== 'pwa') return null;

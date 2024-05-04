@@ -8,7 +8,9 @@ import Link from 'next/link';
 import { useContext } from 'react';
 
 export default function Header() {
-  const { theme, changeTheme } = useContext<ContextWrapperType>(ContextWrapper);
+  const { theme, changeTheme, displayMode } = useContext<ContextWrapperType>(ContextWrapper);
+
+  if (displayMode === 'pwa') return null;
 
   return (
     <>
