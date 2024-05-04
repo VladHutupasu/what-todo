@@ -23,22 +23,28 @@ export default function MobileAddTodoItem({
   useEffect(() => {
     const plusButton = document.getElementById('plus-button');
     console.log('plus button', plusButton);
+    console.log('input ref', inputRef);
     if (!plusButton) {
       console.log('plus button not found');
       return;
     }
 
-    plusButton.onclick = function () {
+    // plusButton.onclick = function () {
+    //   console.log('clicking', inputRef);
+    //   inputRef.current?.focus();
+    // };
+
+    plusButton.addEventListener('click', () => {
       console.log('clicking', inputRef);
       inputRef.current?.focus();
-    };
+    });
 
     // Clean up the event listener when the component unmounts
     return () => {
       plusButton.onclick = null;
       console.log('plus button removed');
     };
-  }, [plusClicked]);
+  }, []);
 
   // setTimeout(() => {
   //   const plusButton = document.getElementById('plus-button');
@@ -55,12 +61,12 @@ export default function MobileAddTodoItem({
       return;
     }
     setIsEditing(true);
+    console.log('useEffect', plusClicked);
   }, [plusClicked]);
 
   useEffect(() => {
     if (!isEditing) return;
-    const plusButton = document.getElementById('plus-button');
-    plusButton?.click();
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
         addTodoItem();
@@ -78,23 +84,28 @@ export default function MobileAddTodoItem({
 
   return (
     <>
-      {isEditing && (
-        <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
-          <input type="checkbox" className="checkbox checkbox-primary" />
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Type here"
-            className="input input-ghost w-full mx-3 focus:outline-none border-none"
-          />
-          <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
-            <CheckIcon className="h-4 w-4 text-success " />
-          </button>
-          <button className="btn btn-ghost ml-auto" onClick={() => setIsEditing(false)}>
-            <XMarkIcon className="h-4 w-4 text-error " />
-          </button>
-        </div>
-      )}
+      {/* {isEditing && ( */}
+      <div
+        className={
+          `${isEditing ? 'block' : 'hidden'}` +
+          ' flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded'
+        }
+      >
+        <input type="checkbox" className="checkbox checkbox-primary" />
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Type here"
+          className="input input-ghost w-full mx-3 focus:outline-none border-none"
+        />
+        <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
+          <CheckIcon className="h-4 w-4 text-success " />
+        </button>
+        <button className="btn btn-ghost ml-auto" onClick={() => setIsEditing(false)}>
+          <XMarkIcon className="h-4 w-4 text-error " />
+        </button>
+      </div>
+      {/* )} */}
     </>
   );
 }
