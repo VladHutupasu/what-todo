@@ -20,6 +20,10 @@ export default function MobileAddTodoItem({
     setIsEditing(false);
   };
 
+  setTimeout(() => {
+    setIsEditing(true);
+  }, 3000);
+
   useEffect(() => {
     // Prevent modal to show up on component mount
     if (isFirstRender.current) {
@@ -30,11 +34,12 @@ export default function MobileAddTodoItem({
   }, [plusClicked]);
 
   useEffect(() => {
-    if (!isEditing) return;
-    // inputRef.current?.focus();
+    if (!isEditing) {
+      inputRef.current?.blur();
+      return;
+    }
 
-    const input2 = document.getElementById('input-test');
-    input2?.focus();
+    inputRef.current?.focus();
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
@@ -54,9 +59,6 @@ export default function MobileAddTodoItem({
   return (
     <>
       {/* {isEditing && ( */}
-      <form className="flex">
-        <input id="input-test" type="text" name="input-test" className="input input-bordered" />
-      </form>
       <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
         <input type="checkbox" className="checkbox checkbox-primary" />
         <input
@@ -64,7 +66,6 @@ export default function MobileAddTodoItem({
           type="text"
           placeholder="Type here"
           className="input input-ghost w-full mx-3 focus:outline-none border-none"
-          readOnly={!isEditing}
         />
         <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
           <CheckIcon className="h-4 w-4 text-success " />
