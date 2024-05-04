@@ -11,8 +11,7 @@ export default function MobileAddTodoItem({
   onTodoItemAdded: (todoItem: ITodoItem) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
-  const { displayMode, plusClicked } = useContext(ContextWrapper);
-  const isFirstRender = useRef(true);
+  const { displayMode } = useContext(ContextWrapper);
   const inputRef = useRef<HTMLInputElement>(null);
   const [shouldFocus, setShouldFocus] = useState(false);
 
@@ -23,15 +22,9 @@ export default function MobileAddTodoItem({
 
   useEffect(() => {
     const plusButton = document.getElementById('plus-button');
-    console.log('plus button', plusButton);
-    console.log('input ref', inputRef);
-    if (!plusButton) {
-      console.log('plus button not found');
-      return;
-    }
+    if (!plusButton) return;
 
     const handleClick = () => {
-      console.log('clicking', inputRef);
       setIsEditing(true);
       setShouldFocus(true);
     };
@@ -40,7 +33,6 @@ export default function MobileAddTodoItem({
     // Clean up the event listener when the component unmounts
     return () => {
       plusButton.removeEventListener('click', handleClick);
-      console.log('plus button removed');
     };
   }, []);
 
@@ -50,37 +42,6 @@ export default function MobileAddTodoItem({
       setShouldFocus(false);
     }
   }, [shouldFocus]);
-  // useEffect(() => {
-  //   const plusButton = document.getElementById('plus-button');
-  //   console.log('plus button', plusButton);
-  //   console.log('input ref', inputRef);
-  //   if (!plusButton) {
-  //     console.log('plus button not found');
-  //     return;
-  //   }
-
-  //   const handleClick = () => {
-  //     console.log('clicking', inputRef);
-  //     inputRef.current?.focus();
-  //   };
-  //   plusButton.addEventListener('click', handleClick);
-
-  //   // Clean up the event listener when the component unmounts
-  //   return () => {
-  //     plusButton.removeEventListener('click', handleClick);
-  //     console.log('plus button removed');
-  //   };
-  // }, []);
-
-  useEffect(() => {
-    // Prevent modal to show up on component mount
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    setIsEditing(true);
-    console.log('useEffect', plusClicked);
-  }, [plusClicked]);
 
   useEffect(() => {
     if (!isEditing) return;
