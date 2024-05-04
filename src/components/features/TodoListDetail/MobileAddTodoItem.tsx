@@ -11,10 +11,9 @@ export default function MobileAddTodoItem({
   onTodoItemAdded: (todoItem: ITodoItem) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
-  const { displayMode, plusClicked } = useContext(ContextWrapper);
+  const { displayMode } = useContext(ContextWrapper);
   const inputRef = useRef<HTMLInputElement>(null);
   const [shouldFocus, setShouldFocus] = useState(false);
-  const isFirstRender = useRef(true);
 
   const addTodoItem = () => {
     onTodoItemAdded({ text: inputRef.current?.value as string, completed: false, todoListId });
@@ -22,26 +21,21 @@ export default function MobileAddTodoItem({
   };
 
   useEffect(() => {
-    // Prevent modal to show up on component mount
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
+    //TODO: get ref from context instead of querying the DOM
+    const plusButton = document.getElementById('plus-button');
+    if (!plusButton) return;
 
-    // const plusButton = document.getElementById('plus-button');
-    // if (!plusButton) return;
-
-    // const handleClick = () => {
-    setIsEditing(true);
-    setShouldFocus(true);
-    // };
-    // plusButton.addEventListener('click', handleClick);
+    const handleClick = () => {
+      setIsEditing(true);
+      setShouldFocus(true);
+    };
+    plusButton.addEventListener('click', handleClick);
 
     // Clean up the event listener when the component unmounts
-    // return () => {
-    //   plusButton.removeEventListener('click', handleClick);
-    // };
-  }, [plusClicked]);
+    return () => {
+      plusButton.removeEventListener('click', handleClick);
+    };
+  }, []);
 
   useEffect(() => {
     if (shouldFocus && inputRef.current) {
