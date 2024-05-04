@@ -20,30 +20,23 @@ export default function MobileAddTodoItem({
     setIsEditing(false);
   };
 
-  setTimeout(() => {
-    // if (inputRef.current) {
-    //   inputRef.current.value = 'Your value here';
-    //   inputRef.current.focus();
-    // }
-
-    // var openButton = document.getElementById('open-search');
-    // var closeButton = document.getElementById('close-search');
-    // var searchBox = document.getElementById('search-box');
-    // var searchInput = document.getElementById('search-input');
-    // openButton!.onclick = function () {
-    //   searchBox!.style.display = 'block';
-    //   searchInput!.focus();
-    // };
-    // closeButton!.onclick = function () {
-    //   searchBox!.style.display = 'none';
-    // };
-
+  useEffect(() => {
     const plusButton = document.getElementById('plus-button');
-    plusButton!.onclick = function () {
-      console.log('clicking');
-      inputRef.current?.focus();
+    if (!plusButton) return;
+
+    const handleClick = () => {
+      console.log('plus button clicked', isEditing);
+      setTimeout(() => inputRef.current?.focus(), 100);
     };
-  }, 3000);
+
+    plusButton.addEventListener('click', handleClick);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      plusButton.removeEventListener('click', handleClick);
+      console.log('plus button removed');
+    };
+  }, []);
 
   useEffect(() => {
     // Prevent modal to show up on component mount
@@ -55,12 +48,7 @@ export default function MobileAddTodoItem({
   }, [plusClicked]);
 
   useEffect(() => {
-    if (!isEditing) {
-      // inputRef.current?.blur();
-      return;
-    }
-
-    // inputRef.current?.focus();
+    if (!isEditing) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
@@ -79,41 +67,23 @@ export default function MobileAddTodoItem({
 
   return (
     <>
-      <div>
-        <a href="/" id="ms-outer" className="for-outer">
-          <img src="//ae01.alicdn.com/kf/HTB1O8URHFXXXXXPaXXX760XFXXXQ.png" alt="AE Logo" />
-        </a>
-        <div className="header-main">
-          <div id="open-search">open</div>
+      {isEditing && (
+        <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
+          <input type="checkbox" className="checkbox checkbox-primary" />
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Type here"
+            className="input input-ghost w-full mx-3 focus:outline-none border-none"
+          />
+          <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
+            <CheckIcon className="h-4 w-4 text-success " />
+          </button>
+          <button className="btn btn-ghost ml-auto" onClick={() => setIsEditing(false)}>
+            <XMarkIcon className="h-4 w-4 text-error " />
+          </button>
         </div>
-      </div>
-
-      <div id="search-box">
-        <form action="/search.htm">
-          <div className="ms-autocomplete-main">
-            <input id="search-input" type="search" placeholder="search" name="keywords" />
-          </div>
-          <div id="close-search">close</div>
-        </form>
-      </div>
-
-      {/* {isEditing && ( */}
-      <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
-        <input type="checkbox" className="checkbox checkbox-primary" />
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Type here"
-          className="input input-ghost w-full mx-3 focus:outline-none border-none"
-        />
-        <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
-          <CheckIcon className="h-4 w-4 text-success " />
-        </button>
-        <button className="btn btn-ghost ml-auto" onClick={() => setIsEditing(false)}>
-          <XMarkIcon className="h-4 w-4 text-error " />
-        </button>
-      </div>
-      {/* )} */}
+      )}
     </>
   );
 }
