@@ -21,7 +21,7 @@ export default function Header() {
         </div>
         <div className="navbar-end">
           <button
-            className="btn btn-ghost text-primary"
+            className="btn btn-ghost text-primary pr-0"
             onClick={() => changeTheme(theme === 'nord' ? 'dracula' : 'nord')}
           >
             {theme === 'nord' ? <MoonIcon className="h-6 w-6" /> : <SunIcon className="h-6 w-6" />}
