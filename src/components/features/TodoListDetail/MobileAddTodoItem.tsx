@@ -34,14 +34,16 @@ export default function MobileAddTodoItem({
     //   inputRef.current?.focus();
     // };
 
-    plusButton.addEventListener('click', () => {
+    const handleClick = () => {
       console.log('clicking', inputRef);
       inputRef.current?.focus();
-    });
+    };
+
+    plusButton.addEventListener('click', handleClick);
 
     // Clean up the event listener when the component unmounts
     return () => {
-      plusButton.onclick = null;
+      plusButton.removeEventListener('click', handleClick);
       console.log('plus button removed');
     };
   }, []);
