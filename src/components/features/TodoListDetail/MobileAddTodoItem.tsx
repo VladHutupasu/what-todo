@@ -21,7 +21,10 @@ export default function MobileAddTodoItem({
   };
 
   setTimeout(() => {
-    setIsEditing(true);
+    if (inputRef.current) {
+      inputRef.current.value = 'Your value here';
+      inputRef.current.focus();
+    }
   }, 3000);
 
   useEffect(() => {
