@@ -20,25 +20,7 @@ export default function MobileAddTodoItem({
     setIsEditing(false);
   };
 
-  // useEffect(() => {
-  //   const plusButton = document.getElementById('plus-button');
-  //   if (!plusButton) return;
-
-  //   const handleClick = () => {
-  //     console.log('plus button clicked', isEditing);
-  //     setTimeout(() => inputRef.current?.focus(), 100);
-  //   };
-
-  //   plusButton.addEventListener('click', handleClick);
-
-  //   // Clean up the event listener when the component unmounts
-  //   return () => {
-  //     plusButton.removeEventListener('click', handleClick);
-  //     console.log('plus button removed');
-  //   };
-  // }, []);
-
-  setTimeout(() => {
+  useEffect(() => {
     const plusButton = document.getElementById('plus-button');
     if (!plusButton) return;
 
@@ -47,8 +29,14 @@ export default function MobileAddTodoItem({
       setTimeout(() => inputRef.current?.focus(), 100);
     };
 
-    plusButton.addEventListener('click', handleClick);
-  }, 100);
+    plusButton.onclick = handleClick;
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      plusButton.onclick = null;
+      console.log('plus button removed');
+    };
+  }, []);
 
   useEffect(() => {
     // Prevent modal to show up on component mount
