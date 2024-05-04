@@ -14,6 +14,7 @@ export default function MobileAddTodoItem({
   const { displayMode, plusClicked } = useContext(ContextWrapper);
   const isFirstRender = useRef(true);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [shouldFocus, setShouldFocus] = useState(false);
 
   const addTodoItem = () => {
     onTodoItemAdded({ text: inputRef.current?.value as string, completed: false, todoListId });
@@ -31,10 +32,8 @@ export default function MobileAddTodoItem({
 
     const handleClick = () => {
       console.log('clicking', inputRef);
-      inputRef.current?.focus();
-      requestAnimationFrame(() => {
-        inputRef.current?.focus();
-      });
+      setIsEditing(true);
+      setShouldFocus(true);
     };
     plusButton.addEventListener('click', handleClick);
 
@@ -44,6 +43,34 @@ export default function MobileAddTodoItem({
       console.log('plus button removed');
     };
   }, []);
+
+  useEffect(() => {
+    if (shouldFocus && inputRef.current) {
+      inputRef.current.focus();
+      setShouldFocus(false);
+    }
+  }, [shouldFocus]);
+  // useEffect(() => {
+  //   const plusButton = document.getElementById('plus-button');
+  //   console.log('plus button', plusButton);
+  //   console.log('input ref', inputRef);
+  //   if (!plusButton) {
+  //     console.log('plus button not found');
+  //     return;
+  //   }
+
+  //   const handleClick = () => {
+  //     console.log('clicking', inputRef);
+  //     inputRef.current?.focus();
+  //   };
+  //   plusButton.addEventListener('click', handleClick);
+
+  //   // Clean up the event listener when the component unmounts
+  //   return () => {
+  //     plusButton.removeEventListener('click', handleClick);
+  //     console.log('plus button removed');
+  //   };
+  // }, []);
 
   useEffect(() => {
     // Prevent modal to show up on component mount
@@ -75,28 +102,23 @@ export default function MobileAddTodoItem({
 
   return (
     <>
-      {/* {isEditing && ( */}
-      <div
-        className={
-          `${isEditing ? 'block' : 'hidden'}` +
-          ' flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded'
-        }
-      >
-        <input type="checkbox" className="checkbox checkbox-primary" />
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Type here"
-          className="input input-ghost w-full mx-3 focus:outline-none border-none"
-        />
-        <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
-          <CheckIcon className="h-4 w-4 text-success " />
-        </button>
-        <button className="btn btn-ghost ml-auto" onClick={() => setIsEditing(false)}>
-          <XMarkIcon className="h-4 w-4 text-error " />
-        </button>
-      </div>
-      {/* )} */}
+      {isEditing && (
+        <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
+          <input type="checkbox" className="checkbox checkbox-primary" />
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Type here"
+            className="input input-ghost w-full mx-3 focus:outline-none border-none"
+          />
+          <button className="btn btn-ghost ml-auto" onClick={() => addTodoItem()}>
+            <CheckIcon className="h-4 w-4 text-success " />
+          </button>
+          <button className="btn btn-ghost ml-auto" onClick={() => setIsEditing(false)}>
+            <XMarkIcon className="h-4 w-4 text-error " />
+          </button>
+        </div>
+      )}
     </>
   );
 }
