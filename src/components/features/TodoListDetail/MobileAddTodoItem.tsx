@@ -26,16 +26,22 @@ export default function MobileAddTodoItem({
     //   inputRef.current.focus();
     // }
 
-    var openButton = document.getElementById('open-search');
-    var closeButton = document.getElementById('close-search');
-    var searchBox = document.getElementById('search-box');
-    var searchInput = document.getElementById('search-input');
-    openButton!.onclick = function () {
-      searchBox!.style.display = 'block';
-      searchInput!.focus();
-    };
-    closeButton!.onclick = function () {
-      searchBox!.style.display = 'none';
+    // var openButton = document.getElementById('open-search');
+    // var closeButton = document.getElementById('close-search');
+    // var searchBox = document.getElementById('search-box');
+    // var searchInput = document.getElementById('search-input');
+    // openButton!.onclick = function () {
+    //   searchBox!.style.display = 'block';
+    //   searchInput!.focus();
+    // };
+    // closeButton!.onclick = function () {
+    //   searchBox!.style.display = 'none';
+    // };
+
+    const plusButton = document.getElementById('plus-button');
+    plusButton!.onclick = function () {
+      console.log('clicking');
+      inputRef.current?.focus();
     };
   }, 3000);
 
@@ -50,11 +56,11 @@ export default function MobileAddTodoItem({
 
   useEffect(() => {
     if (!isEditing) {
-      inputRef.current?.blur();
+      // inputRef.current?.blur();
       return;
     }
 
-    inputRef.current?.focus();
+    // inputRef.current?.focus();
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {

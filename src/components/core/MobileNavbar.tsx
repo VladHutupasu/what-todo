@@ -18,7 +18,7 @@ export default function MobileNavbar() {
             </Link>
           </button>
 
-          <button className="active:scale-90" onClick={() => setPlusClicked(Date.now())}>
+          <button id="plus-button" className="active:scale-90" onClick={() => setPlusClicked(Date.now())}>
             <PlusIcon className="w-5 h-5" />
           </button>
         </div>
