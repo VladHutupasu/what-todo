@@ -54,9 +54,9 @@ export default function MobileAddTodoItem({
   return (
     <>
       {/* {isEditing && ( */}
-      <div className="flex">
-        <input id="input-test" type="text" />
-      </div>
+      <form className="flex">
+        <input id="input-test" type="text" name="input-test" className="input input-bordered" />
+      </form>
       <div className="flex cursor-pointer label justify-start hover:bg-primary hover:bg-opacity-5 rounded">
         <input type="checkbox" className="checkbox checkbox-primary" />
         <input

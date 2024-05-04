@@ -12,13 +12,13 @@ export default function MobileNavbar() {
     <>
       {displayMode === 'pwa' && (
         <div className="md:hidden btm-nav btm-nav-lg text-primary bg-transparent backdrop-blur-lg z-50">
-          <button>
+          <button className="active:scale-90">
             <Link href="/">
               <HomeIcon className="w-5 h-5" />
             </Link>
           </button>
 
-          <button onClick={() => setPlusClicked(Date.now())}>
+          <button className="active:scale-90" onClick={() => setPlusClicked(Date.now())}>
             <PlusIcon className="w-5 h-5" />
           </button>
         </div>
