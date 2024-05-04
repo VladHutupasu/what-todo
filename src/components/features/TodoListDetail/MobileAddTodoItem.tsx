@@ -32,6 +32,9 @@ export default function MobileAddTodoItem({
     const handleClick = () => {
       console.log('clicking', inputRef);
       inputRef.current?.focus();
+      requestAnimationFrame(() => {
+        inputRef.current?.focus();
+      });
     };
     plusButton.addEventListener('click', handleClick);
 
@@ -54,10 +57,6 @@ export default function MobileAddTodoItem({
 
   useEffect(() => {
     if (!isEditing) return;
-
-    requestAnimationFrame(() => {
-      inputRef.current?.focus();
-    });
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
