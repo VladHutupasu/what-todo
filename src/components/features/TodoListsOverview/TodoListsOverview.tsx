@@ -11,7 +11,7 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
   const formRef = useRef<HTMLFormElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [isPending, startTransition] = useTransition();
-  const { plusClicked } = useContext(ContextWrapper);
+  const { plusClicked, displayMode } = useContext(ContextWrapper);
   const isFirstRender = useRef(true);
   const [optimisticTodoLists, addOptimisticTodoList] = useOptimistic(
     todoLists,
@@ -39,7 +39,12 @@ export default function TodoListsOverview({ todoLists }: { todoLists: ITodoList[
 
   return (
     <>
-      <div className="flex flex-col flex-wrap gap-4 sm:flex-row sm:gap-5 justify-center content-center my-24 sm:my-36">
+      <div
+        className={
+          'flex flex-col flex-wrap gap-4 sm:flex-row sm:gap-5 justify-center content-center my-24 sm:my-36 ' +
+          `${displayMode === 'pwa' ? 'mt-11' : ''}`
+        }
+      >
         {optimisticTodoLists.map((todoList: ITodoList) => (
           <TodoListCard
             key={todoList.id}
