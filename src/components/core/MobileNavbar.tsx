@@ -14,12 +14,12 @@ export default function MobileNavbar() {
         <div className="md:hidden btm-nav btm-nav-lg text-primary bg-transparent backdrop-blur-lg z-50">
           <button className="active:scale-90">
             <Link href="/">
-              <HomeIcon className="w-5 h-5" />
+              <HomeIcon className="w-6 h-6" />
             </Link>
           </button>
 
           <button id="plus-button" className="active:scale-90" onClick={() => setPlusClicked(Date.now())}>
-            <PlusIcon className="w-5 h-5" />
+            <PlusIcon className="w-6 h-6" />
           </button>
         </div>
       )}
