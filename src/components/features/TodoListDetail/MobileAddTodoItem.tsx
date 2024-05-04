@@ -6,14 +6,20 @@ import { useContext, useEffect, useRef, useState } from 'react';
 export default function MobileAddTodoItem({
   todoListId,
   onTodoItemAdded,
+  isAddingTodoItem,
 }: {
   todoListId: string;
   onTodoItemAdded: (todoItem: ITodoItem) => void;
+  isAddingTodoItem: (isAddingTodoItem: boolean) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const { displayMode } = useContext(ContextWrapper);
   const inputRef = useRef<HTMLInputElement>(null);
   const [shouldFocus, setShouldFocus] = useState(false);
+
+  useEffect(() => {
+    isAddingTodoItem(isEditing);
+  }, [isEditing]);
 
   const addTodoItem = () => {
     setIsEditing(false);

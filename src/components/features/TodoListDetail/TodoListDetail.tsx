@@ -5,13 +5,14 @@ import { ContextWrapper } from '@context/ContextWrapper';
 import DesktopAddTodoItem from '@features/TodoListDetail/DesktopAddTodoItem';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { ITodoItem, ITodoList } from '@shared/models/Todo.interface';
-import { useContext, useOptimistic, useTransition } from 'react';
+import { useContext, useOptimistic, useState, useTransition } from 'react';
 import MobileAddTodoItem from './MobileAddTodoItem';
 import TodoItem from './TodoItem';
 
 export default function TodoListDetail({ todoList }: { todoList: ITodoList }) {
   const { displayMode } = useContext(ContextWrapper);
   const [isPending, startTransition] = useTransition();
+  const [isAddingTodoItem, setIsAddingTodoItem] = useState(false);
 
   const [optimisticTodoItems, setOptimisticTodoItems] = useOptimistic(
     todoList.items,
@@ -44,43 +45,45 @@ export default function TodoListDetail({ todoList }: { todoList: ITodoList }) {
         }
       />
 
-      {optimisticTodoItems.length > 0 ? (
-        <section className="mb-28">
-          {optimisticTodoItems.map(item => (
-            <>
-              <TodoItem
-                key={item.id}
-                todoItem={item}
-                onTodoItemDeleted={(todoItem: ITodoItem) =>
-                  startTransition(() => {
-                    setOptimisticTodoItems({ type: 'delete', newTodoItem: todoItem });
-                    deleteTodoItemAction(todoItem);
-                  })
-                }
-                onTodoItemUpdated={(todoItem: ITodoItem) =>
-                  startTransition(() => {
-                    setOptimisticTodoItems({ type: 'update', newTodoItem: todoItem });
-                    updateTodoItemAction(todoItem);
-                  })
-                }
-              />
-              <MobileAddTodoItem
-                todoListId={todoList.id!}
-                onTodoItemAdded={(todoItem: ITodoItem) =>
-                  startTransition(() => {
-                    setOptimisticTodoItems({ type: 'add', newTodoItem: todoItem });
-                    createTodoItemAction(todoItem);
-                  })
-                }
-              />
-            </>
-          ))}
-        </section>
-      ) : (
-        <h2 className="font-semibold text-center mt-36">
-          Use <PlusIcon className="h-6 h-6 inline-block text-primary" /> to add a new todo
-        </h2>
-      )}
+      <section className="mb-28">
+        {optimisticTodoItems.length > 0 || isAddingTodoItem ? (
+          optimisticTodoItems.map(item => (
+            <TodoItem
+              key={item.id}
+              todoItem={item}
+              onTodoItemDeleted={(todoItem: ITodoItem) =>
+                startTransition(() => {
+                  setOptimisticTodoItems({ type: 'delete', newTodoItem: todoItem });
+                  deleteTodoItemAction(todoItem);
+                })
+              }
+              onTodoItemUpdated={(todoItem: ITodoItem) =>
+                startTransition(() => {
+                  setOptimisticTodoItems({ type: 'update', newTodoItem: todoItem });
+                  updateTodoItemAction(todoItem);
+                })
+              }
+            />
+          ))
+        ) : (
+          <h2 className="font-semibold text-center mt-36">
+            Use <PlusIcon className="h-6 h-6 inline-block text-primary" /> to add a new todo
+          </h2>
+        )}
+        <MobileAddTodoItem
+          todoListId={todoList.id!}
+          onTodoItemAdded={(todoItem: ITodoItem) =>
+            startTransition(() => {
+              setOptimisticTodoItems({ type: 'add', newTodoItem: todoItem });
+              createTodoItemAction(todoItem);
+            })
+          }
+          isAddingTodoItem={isAddingTodoItem => {
+            console.log('isAdding - ', isAddingTodoItem);
+            setIsAddingTodoItem(isAddingTodoItem);
+          }}
+        />
+      </section>
     </>
   );
 }
